@@ -1,11 +1,21 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Cormorant_Garamond, Montserrat, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
@@ -14,24 +24,29 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "HKDrinks Studio — AI Social Media Poster",
+  title: "HKDrinks Studio — Premium Spirits Social Poster",
   description:
-    "Upload a drink photo, let AI write the caption, and publish or schedule to your Facebook & Instagram — built for the HKDrinks community.",
+    "Upload a bottle or serve photo and let HKDrinks' AI draft an on-brand caption for Facebook & Instagram. Built for Hong Kong's home of premium spirits.",
   keywords: [
     "HKDrinks",
     "Hong Kong",
+    "premium spirits",
+    "tequila",
+    "mezcal",
+    "whisky",
+    "cognac",
     "Facebook",
     "Instagram",
     "AI caption",
     "social media automation",
   ],
-  authors: [{ name: "HKDrinks" }],
+  authors: [{ name: "HK Drinks" }],
   icons: {
-    icon: "https://z-cdn.chatglm.cn/z-ai/static/logo.svg",
+    icon: "/hkdrinks-logo.png",
   },
   openGraph: {
     title: "HKDrinks Studio",
-    description: "AI-powered posting for Facebook & Instagram",
+    description: "AI-powered posting for Facebook & Instagram — Hong Kong's home of premium spirits.",
     siteName: "HKDrinks",
     type: "website",
   },
@@ -48,9 +63,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
+        className={`${cormorant.variable} ${montserrat.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
+        style={{ fontFamily: 'var(--font-montserrat), system-ui, sans-serif' }}
       >
         {children}
         <Toaster />

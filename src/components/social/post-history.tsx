@@ -22,22 +22,22 @@ interface Post {
 const STATUS_BADGE: Record<string, { label: string; color: string; icon: React.ReactNode }> = {
   published: {
     label: 'Published',
-    color: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300',
+    color: 'bg-[rgba(201,168,76,0.15)] text-[var(--gold)] border border-[rgba(201,168,76,0.3)]',
     icon: <CheckCircle2 className="size-3" />,
   },
   scheduled: {
     label: 'Scheduled',
-    color: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300',
+    color: 'bg-[rgba(201,168,76,0.08)] text-[var(--cream)] border border-[rgba(201,168,76,0.25)]',
     icon: <Calendar className="size-3" />,
   },
   draft: {
     label: 'Draft',
-    color: 'bg-muted text-muted-foreground',
+    color: 'bg-[#222] text-muted-foreground border border-[rgba(255,255,255,0.1)]',
     icon: <Clock3 className="size-3" />,
   },
   failed: {
     label: 'Failed',
-    color: 'bg-rose-100 text-rose-700 dark:bg-rose-900/40 dark:text-rose-300',
+    color: 'bg-[rgba(179,38,30,0.15)] text-[#f87171] border border-[rgba(179,38,30,0.3)]',
     icon: <XCircle className="size-3" />,
   },
 }
@@ -93,16 +93,25 @@ export function PostHistory() {
   }
 
   return (
-    <Card>
+    <Card className="border-[rgba(201,168,76,0.2)] bg-[#1a1a1a] shadow-[0_8px_40px_rgba(0,0,0,0.5)]">
       <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle className="text-lg">Post history</CardTitle>
+          <div>
+            <p className="eyebrow text-[0.65rem] mb-1">Archive</p>
+            <CardTitle
+              className="text-white"
+              style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 400, fontSize: '1.6rem', lineHeight: 1.2 }}
+            >
+              Post history
+            </CardTitle>
+          </div>
           <Button
             variant="ghost"
             size="sm"
             onClick={load}
             disabled={loading}
             aria-label="Refresh"
+            className="text-muted-foreground hover:text-[var(--gold)] hover:bg-transparent"
           >
             <RefreshCw className={`size-4 ${loading ? 'animate-spin' : ''}`} />
           </Button>
@@ -110,8 +119,16 @@ export function PostHistory() {
       </CardHeader>
       <CardContent>
         {posts.length === 0 ? (
-          <div className="py-12 text-center text-sm text-muted-foreground">
-            No posts yet. Generate a caption and publish to see it here.
+          <div className="py-16 text-center">
+            <p
+              className="text-[var(--cream)]"
+              style={{ fontFamily: 'var(--font-cormorant)', fontStyle: 'italic', fontSize: '1.05rem' }}
+            >
+              No posts yet.
+            </p>
+            <p className="text-sm text-muted-foreground mt-2">
+              Generate a caption and publish to see it appear here.
+            </p>
           </div>
         ) : (
           <div className="max-h-[640px] space-y-3 overflow-y-auto pr-1">
@@ -121,12 +138,12 @@ export function PostHistory() {
               return (
                 <div
                   key={p.id}
-                  className="flex gap-3 rounded-lg border p-3 hover:bg-muted/30"
+                  className="flex gap-3 rounded-md border border-[rgba(201,168,76,0.15)] p-3 hover:border-[rgba(201,168,76,0.35)] hover:bg-[rgba(201,168,76,0.03)] transition-all"
                 >
                   <img
                     src={p.imageUrl}
                     alt=""
-                    className="size-16 shrink-0 rounded-md object-cover bg-muted"
+                    className="size-16 shrink-0 rounded-sm object-cover bg-black border border-[rgba(201,168,76,0.2)]"
                   />
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
@@ -135,22 +152,25 @@ export function PostHistory() {
                       </Badge>
                       {platforms.map((pl) =>
                         pl === 'facebook' ? (
-                          <Facebook key="fb" className="size-3.5 text-blue-600" />
+                          <Facebook key="fb" className="size-3.5 text-[#1877F2]" />
                         ) : pl === 'instagram' ? (
-                          <Instagram key="ig" className="size-3.5 text-pink-600" />
+                          <Instagram key="ig" className="size-3.5 text-[#DD2A7B]" />
                         ) : null
                       )}
-                      <span className="text-xs text-muted-foreground">
+                      <span className="text-xs text-muted-foreground font-sans">
                         {new Date(
                           p.publishedAt || p.scheduledAt || p.createdAt
                         ).toLocaleString()}
                       </span>
                     </div>
-                    <p className="mt-1 line-clamp-2 text-sm text-foreground/90">
+                    <p
+                      className="mt-1.5 line-clamp-2 text-[var(--off-white)]"
+                      style={{ fontFamily: 'var(--font-cormorant)', fontSize: '0.95rem', lineHeight: 1.5 }}
+                    >
                       {p.caption}
                     </p>
                     {p.hashtags && (
-                      <p className="mt-1 line-clamp-1 text-xs text-muted-foreground">
+                      <p className="mt-1 line-clamp-1 text-xs text-muted-foreground font-mono">
                         {p.hashtags}
                       </p>
                     )}
@@ -160,6 +180,7 @@ export function PostHistory() {
                           size="sm"
                           variant="outline"
                           onClick={() => retryPost(p.id)}
+                          className="btn-lux h-7 border-[var(--gold)] text-[var(--gold)] hover:bg-[rgba(201,168,76,0.08)] hover:text-[var(--gold)]"
                         >
                           Post now
                         </Button>
@@ -168,6 +189,7 @@ export function PostHistory() {
                         size="sm"
                         variant="ghost"
                         onClick={() => deletePost(p.id)}
+                        className="size-7 p-0 text-muted-foreground hover:text-[#f87171] hover:bg-transparent"
                       >
                         <Trash2 className="size-3.5" />
                       </Button>

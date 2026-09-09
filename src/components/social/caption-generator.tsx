@@ -60,26 +60,28 @@ export function CaptionGenerator() {
   return (
     <div className="space-y-4">
       <div className="grid gap-2">
-        <Label htmlFor="brand-voice">Brand voice (optional)</Label>
+        <Label htmlFor="brand-voice" className="eyebrow text-[0.65rem]">Brand voice (optional)</Label>
         <Input
           id="brand-voice"
-          placeholder="e.g. witty, Cantonese-Chinglish, Cha Chaan Teng vibes"
+          placeholder="e.g. moody, editorial, gift-guide tone"
           value={draft.brandVoice}
           onChange={(e) =>
             usePostStore.getState().setBrandVoice(e.target.value)
           }
+          className="border-[rgba(201,168,76,0.25)] bg-black/40 text-[var(--off-white)] placeholder:text-muted-foreground/70 focus-visible:border-[var(--gold)] focus-visible:ring-[var(--gold)]/30"
         />
       </div>
 
       <div className="grid gap-2">
-        <Label htmlFor="extra-context">Extra context (optional)</Label>
+        <Label htmlFor="extra-context" className="eyebrow text-[0.65rem]">Extra context (optional)</Label>
         <Input
           id="extra-context"
-          placeholder="e.g. promo for Tsingtao beer collab, Wed special"
+          placeholder="e.g. launch of Cincoro Extra Añejo, festive gift set"
           value={draft.extraContext}
           onChange={(e) =>
             usePostStore.getState().setExtraContext(e.target.value)
           }
+          className="border-[rgba(201,168,76,0.25)] bg-black/40 text-[var(--off-white)] placeholder:text-muted-foreground/70 focus-visible:border-[var(--gold)] focus-visible:ring-[var(--gold)]/30"
         />
       </div>
 
@@ -87,7 +89,7 @@ export function CaptionGenerator() {
         type="button"
         onClick={generate}
         disabled={isGenerating || !draft.imageUrl}
-        className="w-full bg-rose-600 text-white hover:bg-rose-700"
+        className="btn-lux w-full bg-[var(--gold)] text-black hover:bg-[var(--gold-light)] hover:shadow-[0_4px_20px_rgba(201,168,76,0.3)] hover:-translate-y-0.5 transition-all"
         size="lg"
       >
         {isGenerating ? (
@@ -103,8 +105,8 @@ export function CaptionGenerator() {
 
       <div className="grid gap-2">
         <div className="flex items-center justify-between">
-          <Label htmlFor="caption">Caption</Label>
-          <span className="text-xs text-muted-foreground">
+          <Label htmlFor="caption" className="eyebrow text-[0.65rem]">Caption</Label>
+          <span className="text-xs text-muted-foreground font-sans">
             {draft.caption.length} chars
           </span>
         </div>
@@ -114,19 +116,20 @@ export function CaptionGenerator() {
           value={draft.caption}
           onChange={(e) => setCaption(e.target.value)}
           rows={6}
-          className="resize-y"
+          className="resize-y border-[rgba(201,168,76,0.25)] bg-black/40 text-[var(--off-white)] placeholder:text-muted-foreground/70 focus-visible:border-[var(--gold)] focus-visible:ring-[var(--gold)]/30"
+          style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1rem', lineHeight: 1.6 }}
         />
       </div>
 
       <div className="grid gap-2">
-        <Label htmlFor="hashtags">Hashtags</Label>
+        <Label htmlFor="hashtags" className="eyebrow text-[0.65rem]">Hashtags</Label>
         <Textarea
           id="hashtags"
-          placeholder="#hkdrinks #hkfoodie ..."
+          placeholder="#HKDrinks #PremiumSpirits ..."
           value={draft.hashtags}
           onChange={(e) => setHashtags(e.target.value)}
           rows={2}
-          className="resize-y"
+          className="resize-y border-[rgba(201,168,76,0.25)] bg-black/40 text-[var(--off-white)] placeholder:text-muted-foreground/70 focus-visible:border-[var(--gold)] focus-visible:ring-[var(--gold)]/30 font-mono text-xs"
         />
       </div>
     </div>

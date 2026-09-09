@@ -1,6 +1,6 @@
 'use client'
 
-import { Calendar, Clock, Facebook, Instagram, Loader2, Send, ToggleLeft } from 'lucide-react'
+import { Calendar, Clock, Facebook, Instagram, Loader2, Send } from 'lucide-react'
 import { useState } from 'react'
 import { usePostStore, type PlatformId } from '@/store/post-store'
 import { Button } from '@/components/ui/button'
@@ -15,13 +15,13 @@ const PLATFORMS: { id: PlatformId; label: string; icon: React.ReactNode; color: 
     id: 'facebook',
     label: 'Facebook',
     icon: <Facebook className="size-4" />,
-    color: 'bg-blue-600',
+    color: 'bg-[#1877F2]',
   },
   {
     id: 'instagram',
     label: 'Instagram',
     icon: <Instagram className="size-4" />,
-    color: 'bg-gradient-to-tr from-amber-500 via-pink-500 to-purple-600',
+    color: 'bg-gradient-to-tr from-[#F58529] via-[#DD2A7B] to-[#8134AF]',
   },
 ]
 
@@ -104,7 +104,7 @@ export function PublishPanel() {
   return (
     <div className="space-y-5">
       <div>
-        <Label className="mb-2 block">Platforms</Label>
+        <Label className="eyebrow mb-3 block text-[0.65rem]">Platforms</Label>
         <div className="grid grid-cols-2 gap-3">
           {PLATFORMS.map((p) => {
             const active = draft.platforms.includes(p.id)
@@ -114,24 +114,24 @@ export function PublishPanel() {
                 type="button"
                 onClick={() => togglePlatform(p.id)}
                 className={cn(
-                  'flex items-center gap-3 rounded-xl border p-3 text-left transition-all',
+                  'flex items-center gap-3 rounded-md p-3 text-left transition-all border',
                   active
-                    ? 'border-rose-300 bg-rose-50/50 dark:border-rose-700 dark:bg-rose-950/30'
-                    : 'border-muted-foreground/20 hover:bg-muted/40'
+                    ? 'border-[var(--gold)] bg-[rgba(201,168,76,0.08)]'
+                    : 'border-[rgba(201,168,76,0.2)] hover:border-[rgba(201,168,76,0.4)] hover:bg-[rgba(201,168,76,0.03)]'
                 )}
               >
                 <span
                   className={cn(
-                    'flex size-9 items-center justify-center rounded-lg text-white',
+                    'flex size-9 items-center justify-center rounded-md text-white',
                     p.color
                   )}
                 >
                   {p.icon}
                 </span>
-                <span className="flex-1">
-                  <span className="block text-sm font-medium">{p.label}</span>
-                  <span className="block text-xs text-muted-foreground">
-                    {active ? 'Will post to this' : 'Off'}
+                <span className="flex-1 min-w-0">
+                  <span className="block text-sm font-medium text-[var(--off-white)]">{p.label}</span>
+                  <span className="block text-[0.65rem] uppercase tracking-wider text-muted-foreground">
+                    {active ? 'Will post' : 'Off'}
                   </span>
                 </span>
                 <Switch checked={active} />
@@ -141,9 +141,9 @@ export function PublishPanel() {
         </div>
       </div>
 
-      <div className="flex items-center justify-between rounded-lg border bg-muted/20 px-3 py-2.5">
-        <div className="flex items-center gap-2 text-sm">
-          <ToggleLeft className="size-4" />
+      <div className="flex items-center justify-between rounded-md border border-[rgba(201,168,76,0.2)] bg-black/30 px-3 py-2.5">
+        <div className="flex items-center gap-2 text-sm text-[var(--off-white)]">
+          <Calendar className="size-4 text-[var(--gold)]" />
           <span className="font-medium">Schedule for later</span>
         </div>
         <Switch
@@ -157,17 +157,18 @@ export function PublishPanel() {
 
       {scheduleMode && (
         <div className="grid gap-2 animate-in fade-in-0">
-          <Label htmlFor="scheduled-at">Post at</Label>
+          <Label htmlFor="scheduled-at" className="eyebrow text-[0.65rem]">Post at</Label>
           <Input
             id="scheduled-at"
             type="datetime-local"
             value={scheduledAt}
             onChange={(e) => setScheduledAt(e.target.value)}
             min={new Date().toISOString().slice(0, 16)}
+            className="border-[rgba(201,168,76,0.25)] bg-black/40 text-[var(--off-white)] focus-visible:border-[var(--gold)] focus-visible:ring-[var(--gold)]/30 [color-scheme:dark]"
           />
-          <p className="text-xs text-muted-foreground flex items-center gap-1">
+          <p className="text-xs text-muted-foreground flex items-center gap-1.5">
             <Clock className="size-3" />
-            Time zone: your local time.
+            Your local time.
           </p>
         </div>
       )}
@@ -178,10 +179,10 @@ export function PublishPanel() {
         disabled={!canPublish}
         size="lg"
         className={cn(
-          'w-full',
+          'btn-lux w-full transition-all hover:-translate-y-0.5',
           scheduleMode
-            ? 'bg-amber-600 text-white hover:bg-amber-700'
-            : 'bg-emerald-600 text-white hover:bg-emerald-700'
+            ? 'bg-[#1a1a1a] text-[var(--gold)] border border-[var(--gold)] hover:bg-[rgba(201,168,76,0.08)] hover:shadow-[0_4px_20px_rgba(201,168,76,0.2)]'
+            : 'bg-[var(--gold)] text-black hover:bg-[var(--gold-light)] hover:shadow-[0_4px_20px_rgba(201,168,76,0.3)]'
         )}
       >
         {isPublishing ? (
@@ -200,7 +201,7 @@ export function PublishPanel() {
         )}
       </Button>
 
-      <p className="text-xs text-muted-foreground text-center">
+      <p className="text-xs text-muted-foreground text-center leading-relaxed">
         Demo mode: posts are saved to your local history, not yet pushed to live Meta accounts.
         Wire your Meta credentials when ready to make it live.
       </p>

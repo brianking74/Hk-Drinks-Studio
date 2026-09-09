@@ -1,0 +1,1203 @@
+     1→     1→<!DOCTYPE html>
+     2→     2→<html lang="en" data-theme="dark">
+     3→     3→<head>
+     4→     4→  <meta charset="UTF-8" />
+     5→     5→  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     6→     6→
+     7→     7→  <!-- ═══════════════════════════════════════════════
+     8→     8→       PRIMARY SEO META TAGS
+     9→     9→  ═══════════════════════════════════════════════ -->
+    10→    10→  <title>HK Drinks | Premium Spirits Delivered in Hong Kong — Cincoro & Clase Azul</title>
+    11→    11→  <meta name="description" content="Hong Kong's premier online spirits shop. Discover Cincoro and Clase Azul — premium tequilas and mezcals from Mexico, delivered across Hong Kong Island, Kowloon & New Territories within 48 hours." />
+    12→    12→  <meta name="keywords" content="tequila Hong Kong, buy tequila Hong Kong, premium tequila HK, Cincoro tequila Hong Kong, Clase Azul Hong Kong, mezcal Hong Kong, tequila delivery Hong Kong, Hong Kong spirits shop, best tequila Hong Kong, luxury tequila HK, 龍舌蘭酒 香港, tequila 香港, agave spirits Hong Kong, Mexican spirits Hong Kong, tequila online HK, HK tequila delivery" />
+    13→    13→  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    14→    14→  <meta name="author" content="HK Drinks" />
+    15→    15→  <meta name="theme-color" content="#0a0a0a" />
+    16→    16→  <link rel="canonical" href="https://www.hkdrinks.shop" />
+    17→    17→
+    18→    18→  <!-- ═══════════════════════════════════════════════
+    19→    19→       GEO & LANGUAGE TARGETING
+    20→    20→  ═══════════════════════════════════════════════ -->
+    21→    21→  <meta name="geo.region" content="HK" />
+    22→    22→  <meta name="geo.placename" content="Hong Kong" />
+    23→    23→  <meta name="geo.position" content="22.3193;114.1694" />
+    24→    24→  <meta name="ICBM" content="22.3193, 114.1694" />
+    25→    25→  <meta name="language" content="English" />
+    26→    26→  <link rel="alternate" hreflang="en-hk" href="https://www.hkdrinks.shop" />
+    27→    27→  <link rel="alternate" hreflang="zh-hk" href="https://www.hkdrinks.shop" />
+    28→    28→  <link rel="alternate" hreflang="x-default" href="https://www.hkdrinks.shop" />
+    29→    29→
+    30→    30→  <!-- ═══════════════════════════════════════════════
+    31→    31→       OPEN GRAPH (Facebook, LinkedIn, WhatsApp)
+    32→    32→  ═══════════════════════════════════════════════ -->
+    33→    33→  <meta property="og:type" content="website" />
+    34→    34→  <meta property="og:site_name" content="HK Drinks" />
+    35→    35→  <meta property="og:title" content="HK Drinks | Premium Spirits Delivered in Hong Kong" />
+    36→    36→  <meta property="og:description" content="Discover Cincoro and Clase Azul — the finest tequilas and mezcals from Mexico, delivered across Hong Kong. 48-hour delivery, age-verified." />
+    37→    37→  <meta property="og:url" content="https://www.hkdrinks.shop" />
+    38→    38→  <meta property="og:image" content="https://www.hkdrinks.shop/images/hero-fallback.jpg" />
+    39→    39→  <meta property="og:image:width" content="1200" />
+    40→    40→  <meta property="og:image:height" content="630" />
+    41→    41→  <meta property="og:image:alt" content="HK Drinks — Premium Spirits Delivered in Hong Kong" />
+    42→    42→  <meta property="og:locale" content="en_HK" />
+    43→    43→  <meta property="og:locale:alternate" content="zh_HK" />
+    44→    44→
+    45→    45→  <!-- ═══════════════════════════════════════════════
+    46→    46→       TWITTER / X CARDS
+    47→    47→  ═══════════════════════════════════════════════ -->
+    48→    48→  <meta name="twitter:card" content="summary_large_image" />
+    49→    49→  <meta name="twitter:title" content="HK Drinks | Premium Spirits Delivered in HK" />
+    50→    50→  <meta name="twitter:description" content="Discover Cincoro and Clase Azul — the finest tequilas and mezcals from Mexico, delivered across Hong Kong." />
+    51→    51→  <meta name="twitter:image" content="https://www.hkdrinks.shop/images/hero-fallback.jpg" />
+    52→    52→  <meta name="twitter:image:alt" content="HK Drinks — Premium Spirits Delivered in Hong Kong" />
+    53→    53→
+    54→    54→  <!-- ═══════════════════════════════════════════════
+    55→    55→       STRUCTURED DATA — JSON-LD
+    56→    56→  ═══════════════════════════════════════════════ -->
+    57→    57→  <script type="application/ld+json">
+    58→    58→  {
+    59→    59→    "@context": "https://schema.org",
+    60→    60→    "@graph": [
+    61→    61→      {
+    62→    62→        "@type": ["Organization", "LocalBusiness", "LiquorStore"],
+    63→    63→        "@id": "https://www.hkdrinks.shop/#organization",
+    64→    64→        "name": "HK Drinks",
+    65→    65→        "alternateName": ["HK Drinks", "香港美酒"],
+    66→    66→        "url": "https://www.hkdrinks.shop",
+    67→    67→        "logo": {
+    68→    68→          "@type": "ImageObject",
+    69→    69→          "url": "https://www.hkdrinks.shop/images/logo-gold.png",
+    70→    70→          "width": 832,
+    71→    71→          "height": 484
+    72→    72→        },
+    73→    73→        "image": "https://www.hkdrinks.shop/images/hero-fallback.jpg",
+    74→    74→        "description": "Hong Kong's premier online spirits retailer. We stock premium tequilas and mezcals from Cincoro and Clase Azul — crafted in Mexico and delivered across Hong Kong within 48 hours.",
+    75→    75→        "telephone": "+852****0036",
+    76→    76→        "email": "hello@hkdrinks.shop",
+    77→    77→        "address": {
+    78→    78→          "@type": "PostalAddress",
+    79→    79→          "addressLocality": "Hong Kong",
+    80→    80→          "addressCountry": "HK"
+    81→    81→        },
+    82→    82→        "areaServed": {
+    83→    83→          "@type": "AdministrativeArea",
+    84→    84→          "name": "Hong Kong"
+    85→    85→        },
+    86→    86→        "servesCuisine": "Spirits & Liquor",
+    87→    87→        "priceRange": "HK$580–HK$5,480",
+    88→    88→        "openingHoursSpecification": {
+    89→    89→          "@type": "OpeningHoursSpecification",
+    90→    90→          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+    91→    91→          "opens": "09:00",
+    92→    92→          "closes": "19:00"
+    93→    93→        },
+    94→    94→        "contactPoint": [
+    95→    95→          {
+    96→    96→            "@type": "ContactPoint",
+    97→    97→            "contactType": "customer service",
+    98→    98→            "telephone": "+852****0036",
+    99→    99→            "email": "hello@hkdrinks.shop",
+   100→   100→            "availableLanguage": ["English","Chinese"]
+   101→   101→          }
+   102→   102→        ],
+   103→   103→        "sameAs": [
+   104→   104→          "https://www.instagram.com/hongkongdrinks",
+   105→   105→          "https://www.facebook.com/hkdrinks"
+   106→   106→        ]
+   107→   107→      },
+   108→   108→      {
+   109→   109→        "@type": "WebSite",
+   110→   110→        "@id": "https://www.hkdrinks.shop/#website",
+   111→   111→        "url": "https://www.hkdrinks.shop",
+   112→   112→        "name": "HK Drinks",
+   113→   113→        "description": "Hong Kong's premier online spirits retailer — premium tequilas and mezcals with 48-hour delivery across HK.",
+   114→   114→        "publisher": {"@id": "https://www.hkdrinks.shop/#organization"},
+   115→   115→        "inLanguage": ["en-HK", "zh-HK"],
+   116→   116→        "potentialAction": {
+   117→   117→          "@type": "SearchAction",
+   118→   118→          "target": {
+   119→   119→            "@type": "EntryPoint",
+   120→   120→            "urlTemplate": "https://www.hkdrinks.shop/?s={search_term_string}"
+   121→   121→          },
+   122→   122→          "query-input": "required name=search_term_string"
+   123→   123→        }
+   124→   124→      },
+   125→   125→      {
+   126→   126→        "@type": "WebPage",
+   127→   127→        "@id": "https://www.hkdrinks.shop/#webpage",
+   128→   128→        "url": "https://www.hkdrinks.shop",
+   129→   129→        "name": "HK Drinks | Premium Spirits Delivered in Hong Kong",
+   130→   130→        "isPartOf": {"@id": "https://www.hkdrinks.shop/#website"},
+   131→   131→        "about": {"@id": "https://www.hkdrinks.shop/#organization"},
+   132→   132→        "description": "HK Drinks is Hong Kong's home of premium spirits. Discover Cincoro and Clase Azul — the finest tequilas and mezcals from Mexico, delivered across all HK districts within 48 hours.",
+   133→   133→        "inLanguage": "en-HK",
+   134→   134→        "speakable": {
+   135→   135→          "@type": "SpeakableSpecification",
+   136→   136→          "cssSelector": [".scene-hero__title", ".scene-hero__subtitle", ".section-title"]
+   137→   137→        }
+   138→   138→      },
+   139→   139→      {
+   140→   140→        "@type": "FAQPage",
+   141→   141→        "@id": "https://www.hkdrinks.shop/#faq",
+   142→   142→        "mainEntity": [
+   143→   143→          {
+   144→   144→            "@type": "Question",
+   145→   145→            "name": "What premium spirits do you offer in Hong Kong?",
+   146→   146→            "acceptedAnswer": {
+   147→   147→              "@type": "Answer",
+   148→   148→              "text": "HK Drinks specialises in premium Mexican spirits available for delivery across Hong Kong. Our collection includes the complete Cincoro tequila range — Blanco, Reposado, Anejo, Extra Anejo and Gold — as well as Clase Azul tequilas and mezcals, each presented in their iconic hand-painted ceramic decanters."
+   149→   149→            }
+   150→   150→          },
+   151→   151→          {
+   152→   152→            "@type": "Question",
+   153→   153→            "name": "How fast is delivery in Hong Kong?",
+   154→   154→            "acceptedAnswer": {
+   155→   155→              "@type": "Answer",
+   156→   156→              "text": "HK Drinks delivers within 48 hours across Hong Kong Island and Kowloon, and within 48 hours across New Territories. Free delivery is available on all orders. An adult (18+) must be present to receive the delivery as required by Hong Kong law."
+   157→   157→            }
+   158→   158→          },
+   159→   159→          {
+   160→   160→            "@type": "Question",
+   161→   161→            "name": "What payment methods are accepted?",
+   162→   162→            "acceptedAnswer": {
+   163→   163→              "@type": "Answer",
+   164→   164→              "text": "We accept all major credit and debit cards (Visa, Mastercard, Amex, UnionPay, Apple Pay, Google Pay) via Stripe, FPS (Faster Payment System) compatible with all Hong Kong banks, and PayMe by HSBC."
+   165→   165→            }
+   166→   166→          },
+   167→   167→          {
+   168→   168→            "@type": "Question",
+   169→   169→            "name": "What is Cincoro tequila?",
+   170→   170→            "acceptedAnswer": {
+   171→   171→              "@type": "Answer",
+   172→   172→              "text": "Cincoro is a luxury tequila brand co-founded in 2019 by five NBA team owners: Michael Jordan (Charlotte Hornets), Jeanie Buss (Los Angeles Lakers), Wes Edens (Milwaukee Bucks), Wyc Grousbeck (Boston Celtics), and Emilia Fazzalari. The name combines the Spanish words 'cinco' (five) and 'oro' (gold). Produced in the highlands of Jalisco, Mexico, Cincoro offers five expressions from Blanco to Gold."
+   173→   173→            }
+   174→   174→          },
+   175→   175→          {
+   176→   176→            "@type": "Question",
+   177→   177→            "name": "What makes Clase Azul special?",
+   178→   178→            "acceptedAnswer": {
+   179→   179→              "@type": "Answer",
+   180→   180→              "text": "Clase Azul is renowned for its iconic hand-painted ceramic decanters, each crafted by artisans in the Mexican village of Santa Maria Canchesda, Michoacan. Founded in 1989, Clase Azul produces exceptional tequilas and mezcals that are as much art as they are spirit — each decanter is a unique piece, painted by hand and signed by the artist."
+   181→   181→            }
+   182→   182→          },
+   183→   183→          {
+   184→   184→            "@type": "Question",
+   185→   185→            "name": "What are the best tequila bars in Hong Kong?",
+   186→   186→            "acceptedAnswer": {
+   187→   187→              "@type": "Answer",
+   188→   188→              "text": "Some of the best bars for enjoying tequila in Hong Kong include COA, Tequila on Davis, El Taquero, La Vista, Tequila Mex, and Club 33. COA was listed as THE best bar in Asia's 50 Best Bars from 2021-2023, so it's a great place to start!"
+   189→   189→            }
+   190→   190→          }
+   191→   191→        ]
+   192→   192→      },
+   193→   193→      {
+   194→   194→        "@type": "BreadcrumbList",
+   195→   195→        "@id": "https://www.hkdrinks.shop/#breadcrumb",
+   196→   196→        "itemListElement": [
+   197→   197→          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.hkdrinks.shop"},
+   198→   198→          {"@type": "ListItem", "position": 2, "name": "Premium Tequila Hong Kong", "item": "https://www.hkdrinks.shop/cincoro"},
+   199→   199→          {"@type": "ListItem", "position": 3, "name": "Premium Mezcal Hong Kong", "item": "https://www.hkdrinks.shop/clase-azul"}
+   200→   200→        ]
+   201→   201→      }
+   202→   202→    ]
+   203→   203→  }
+   204→   204→  </script>
+   205→   205→
+   206→   206→  <!-- ═══════════════════════════════════════════════
+   207→   207→       FONTS & ASSETS
+   208→   208→  ═══════════════════════════════════════════════ -->
+   209→   209→  <link rel="preconnect" href="https://fonts.googleapis.com" />
+   210→   210→  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+   211→   211→  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+   212→   212→  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+   213→   213→  <link rel="stylesheet" href="css/style.css?v=2" />
+   214→   214→  <link rel="stylesheet" href="css/homepage-cinematic.css?v=3" />
+   215→   215→  <!-- QR Code generator (used for FPS QR) -->
+   216→   216→  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+   217→   217→  <!-- Stripe.js (always load from Stripe's CDN for PCI compliance) -->
+   218→   218→  <script src="https://js.stripe.com/v3/"></script>
+   219→   219→  <!-- Google Tag Manager -->
+   220→   220→  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+   221→   221→  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+   222→   222→  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+   223→   223→  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+   224→   224→  })(window,document,'script','dataLayer','GTM-57N5FQND');</script>
+   225→   225→  <!-- End Google Tag Manager -->
+   226→   226→</head>
+   227→   227→<body>
+   228→   228→  <!-- Google Tag Manager (noscript) -->
+   229→   229→  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-57N5FQND"
+   230→   230→  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+   231→   231→  <!-- End Google Tag Manager (noscript) -->
+   232→   232→
+   233→   233→  <!-- ======= AGE GATE ======= -->
+   234→   234→  <div id="age-gate" class="age-gate">
+   235→   235→    <div class="age-gate__inner">
+   236→   236→      <img src="images/logo-gold.png" alt="HK Drinks" class="age-gate__logo">
+   237→   237→      <h2 class="age-gate__title">Are You of Legal Drinking Age?</h2>
+   238→   238→      <p class="age-gate__sub">You must be 18 years or older to enter this site in Hong Kong.</p>
+   239→   239→      <div class="age-gate__buttons">
+   240→   240→        <button id="age-yes" class="btn btn--gold">Yes, Enter</button>
+   241→   241→        <button id="age-no" class="btn btn--outline">No, Exit</button>
+   242→   242→      </div>
+   243→   243→      <p class="age-gate__legal">By entering this site you agree to our <a href="https://www.hkdrinks.shop/terms">Terms &amp; Conditions</a> and <a href="https://www.hkdrinks.shop/privacy">Privacy Policy</a>. Please drink responsibly.</p>
+   244→   244→      <div class="age-gate__hk-notice">
+   245→   245→        <p class="age-gate__hk-notice-en">Under the law of Hong Kong, intoxicating liquor must not be sold or supplied to a minor in the course of business.</p>
+   246→   246→        <p class="age-gate__hk-notice-zh">根據香港法律，不得在業務過程中，向未成年人售賣或供應令人醺醉的酒類。</p>
+   247→   247→        <p class="age-gate__hk-notice-hotline">衛生署控煙酒辦公室 &nbsp;·&nbsp; 查詢及投訴熱線：2961 8823</p>
+   248→   248→      </div>
+   249→   249→    </div>
+   250→   250→  </div>
+   251→   251→
+   252→   252→  <!-- ======= MAIN SITE ======= -->
+   253→   253→  <div id="main-site" class="main-site" style="display:none;">
+   254→   254→
+   255→   255→    <!-- CART SIDEBAR -->
+   256→   256→    <div id="cart-sidebar" class="cart-sidebar">
+   257→   257→      <div class="cart-sidebar__header">
+   258→   258→        <h3>Your Order</h3>
+   259→   259→        <button id="close-cart" class="cart-close"><i class="fas fa-times"></i></button>
+   260→   260→      </div>
+   261→   261→      <div id="cart-items" class="cart-items"></div>
+   262→   262→      <div class="cart-sidebar__footer">
+   263→   263→        <div class="cart-subtotal">
+   264→   264→          <span>Subtotal</span>
+   265→   265→          <span id="cart-total">HK$0</span>
+   266→   266→        </div>
+   267→   267→        <button class="btn btn--gold btn--full" id="checkout-btn">Proceed to Checkout</button>
+   268→   268→        <p class="cart-note">Free delivery in Hong Kong on all orders</p>
+   269→   269→      </div>
+   270→   270→    </div>
+   271→   271→    <div id="cart-overlay" class="cart-overlay"></div>
+   272→   272→
+   273→   273→    <!-- NAVIGATION -->
+   274→   274→    <nav id="navbar" class="navbar">
+   275→   275→      <div class="navbar__inner">
+   276→   276→        <button class="navbar__hamburger" id="menu-toggle" aria-label="Open Menu">
+   277→   277→          <span></span><span></span><span></span>
+   278→   278→        </button>
+   279→   279→
+   280→   280→        <a href="#" class="navbar__logo">
+   281→   281→          <img src="images/logo-gold.png" alt="HK Drinks" class="navbar__logo-img" />
+   282→   282→        </a>
+   283→   283→
+   284→   284→        <ul class="navbar__links" id="nav-links">
+   285→   285→          <li><a href="#scene-hero" class="active">Home</a></li>
+   286→   286→          <li class="nav-dropdown">
+   287→   287→            <a href="#">Spirits <i class="fas fa-chevron-down" style="font-size:0.6em;margin-left:4px;"></i></a>
+   288→   288→            <ul class="nav-dropdown__menu">
+   289→   289→              <li><a href="shop.html">Tequila</a></li>
+   290→   290→              <li><a href="shop.html#mezcal">Mezcal</a></li>
+   291→   291→              <li><a href="shop.html#whisky">Whisky</a></li>
+   292→   292→            </ul>
+   293→   293→          </li>
+   294→   294→          <li class="nav-dropdown">
+   295→   295→            <a href="#">Brands <i class="fas fa-chevron-down" style="font-size:0.6em;margin-left:4px;"></i></a>
+   296→   296→            <ul class="nav-dropdown__menu">
+   297→   297→              <li><a href="#scene-cincoro">Cincoro</a></li>
+   298→   298→              <li><a href="#scene-clase-azul">Clase Azul</a></li>
+   299→   299→              <li><a href="alfred-giraud.html">Alfred Giraud</a></li>
+   300→   300→              <li><a href="glendronach.html">GlenDronach</a></li>
+   301→   301→              <li><a href="nikka.html">Nikka</a></li>
+   302→   302→            </ul>
+   303→   303→          </li>
+   304→   304→          <li><a href="shop.html">Shop</a></li>
+   305→   305→          <li><a href="cocktails.html">Cocktails</a></li>
+   306→   306→          <li><a href="about.html">About</a></li>
+   307→   307→          <li><a href="#contact">Contact</a></li>
+   308→   308→        </ul>
+   309→   309→
+   310→   310→        <div class="navbar__actions">
+   311→   311→          <button class="navbar__cart" id="open-cart" aria-label="Cart">
+   312→   312→            <i class="fas fa-shopping-bag"></i>
+   313→   313→            <span class="cart-count" id="cart-count">0</span>
+   314→   314→          </button>
+   315→   315→          <!-- THEME SWITCHER -->
+   316→   316→          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle light/dark mode">
+   317→   317→            <span class="theme-toggle__track">
+   318→   318→              <span class="theme-toggle__thumb">
+   319→   319→                <i class="fas fa-moon theme-toggle__icon theme-toggle__icon--dark"></i>
+   320→   320→                <i class="fas fa-sun theme-toggle__icon theme-toggle__icon--light"></i>
+   321→   321→              </span>
+   322→   322→            </span>
+   323→   323→          </button>
+   324→   324→          <span class="navbar__region"><i class="fas fa-map-marker-alt"></i> HK</span>
+   325→   325→        </div>
+   326→   326→      </div>
+   327→   327→    </nav>
+   328→   328→
+   329→   329→    <!-- MOBILE MENU -->
+   330→   330→    <div class="mobile-menu" id="mobile-menu">
+   331→   331→      <button class="mobile-menu__close" id="close-menu"><i class="fas fa-times"></i></button>
+   332→   332→      <ul>
+   333→   333→        <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+   334→   334→        <li class="mobile-menu__has-sub">
+   335→   335→          <a href="#" class="mobile-nav-link mobile-sub-toggle">Spirits <i class="fas fa-chevron-down mobile-sub-arrow"></i></a>
+   336→   336→          <ul class="mobile-sub-menu">
+   337→   337→            <li><a href="shop.html" class="mobile-nav-link">Tequila</a></li>
+   338→   338→            <li><a href="shop.html#mezcal" class="mobile-nav-link">Mezcal</a></li>
+   339→   339→            <li><a href="shop.html#whisky" class="mobile-nav-link">Whisky</a></li>
+   340→   340→          </ul>
+   341→   341→        </li>
+   342→   342→        <li class="mobile-menu__has-sub">
+   343→   343→          <a href="#" class="mobile-nav-link mobile-sub-toggle">Brands <i class="fas fa-chevron-down mobile-sub-arrow"></i></a>
+   344→   344→          <ul class="mobile-sub-menu">
+   345→   345→            <li><a href="cincoro.html" class="mobile-nav-link">Cincoro</a></li>
+   346→   346→            <li><a href="clase-azul.html" class="mobile-nav-link">Clase Azul</a></li>
+   347→   347→            <li><a href="alfred-giraud.html" class="mobile-nav-link">Alfred Giraud</a></li>
+   348→   348→            <li><a href="glendronach.html" class="mobile-nav-link">GlenDronach</a></li>
+   349→   349→            <li><a href="nikka.html" class="mobile-nav-link">Nikka</a></li>
+   350→   350→          </ul>
+   351→   351→        </li>
+   352→   352→        <li><a href="shop.html" class="mobile-nav-link">Shop</a></li>
+   353→   353→        <li><a href="cocktails.html" class="mobile-nav-link">Cocktails</a></li>
+   354→   354→        <li><a href="about.html" class="mobile-nav-link">About</a></li>
+   355→   355→        <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+   356→   356→      </ul>
+   357→   357→    </div>
+   358→   358→
+   359→   359→    <!-- ======= CINEMATIC HERO ======= -->
+   360→   360→    <section id="scene-hero" class="scene scene-hero" aria-label="Hero">
+   361→   361→      <div class="scene-hero__video-wrap">
+   362→   362→        <video class="scene-hero__video" muted loop playsinline poster="images/hero-fallback.jpg" preload="none">
+   363→   363→          <source src="videos/hero.mp4" type="video/mp4">
+   364→   364→        </video>
+   365→   365→        <img class="scene-hero__video-fallback" src="images/hero-fallback.jpg" alt="" aria-hidden="true" />
+   366→   366→      </div>
+   367→   367→      <div class="scene-hero__overlay"></div>
+   368→   368→      <div class="scene-hero__content">
+   369→   369→        <p class="scene-hero__eyebrow stagger-line">Premium Spirits, Delivered in Hong Kong</p>
+   370→   370→        <h1 class="scene-hero__title">
+   371→   371→          <span class="stagger-line">The Finest Spirits.</span>
+   372→   372→          <em class="stagger-line">Delivered to Your Door.</em>
+   373→   373→        </h1>
+   374→   374→        <p class="scene-hero__subtitle stagger-line">
+   375→   375→          HK Drinks brings the world's most exceptional premium spirits to Hong Kong.
+   376→   376→          From Cincoro, co-founded by Michael Jordan and four fellow NBA owners, to the
+   377→   377→          hand-painted ceramic artistry of Clase Azul, every bottle tells a story worth sharing.
+   378→   378→        </p>
+   379→   379→        <div class="scene-hero__cta stagger-line">
+   380→   380→          <a href="shop.html" class="btn btn--gold">Explore Our Collection</a>
+   381→   381→        </div>
+   382→   382→      </div>
+   383→   383→      <div class="scene-hero__scroll" aria-hidden="true">
+   384→   384→        <span>Scroll to Explore</span>
+   385→   385→        <div class="scene-hero__scroll-line"></div>
+   386→   386→      </div>
+   387→   387→    </section>
+   388→   388→
+   389→   389→    <!-- ======= CINCORO BRAND INTRO ======= -->
+   390→   390→    <section id="scene-cincoro" class="scene scene-cincoro brand-scene" aria-label="Cincoro Tequila">
+   391→   391→      <div class="container">
+   392→   392→        <div class="brand-scene__grid">
+   393→   393→          <div class="brand-scene__text">
+   394→   394→            <p class="brand-scene__eyebrow">Cincoro</p>
+   395→   395→            <h2 class="brand-scene__title">
+   396→   396→              Five Founders.<br />
+   397→   397→              <span class="brand-scene__title--gold">One Gold Standard.</span>
+   398→   398→            </h2>
+   399→   399→            <p class="brand-scene__desc">
+   400→   400→              Born from a dinner shared by five NBA team owners, including Michael Jordan,
+   401→   401→              Cincoro is crafted from 100% Blue Weber Agave in the highlands of Jalisco, Los Altos.
+   402→   402→              From the crisp Blanco to the award-winning Extra Anejo, every sip reflects the
+   403→   403→              passion of its legendary founders.
+   404→   404→            </p>
+   405→   405→            <a href="cincoro.html" class="btn btn--gold">Discover Cincoro <i class="fas fa-arrow-right" style="margin-left:8px;font-size:0.7em;"></i></a>
+   406→   406→          </div>
+   407→   407→          <div class="brand-scene__image">
+   408→   408→            <img src="images/lineup.jpg" alt="Cincoro Tequila Collection" loading="lazy" />
+   409→   409→          </div>
+   410→   410→        </div>
+   411→   411→      </div>
+   412→   412→    </section>
+   413→   413→
+   414→   414→    <!-- ======= CLASE AZUL BRAND INTRO ======= -->
+   415→   415→    <section id="scene-clase-azul" class="scene scene-clase-azul brand-scene brand-scene--reverse" aria-label="Clase Azul Tequila">
+   416→   416→      <div class="container">
+   417→   417→        <div class="brand-scene__grid">
+   418→   418→          <div class="brand-scene__image">
+   419→   419→            <img src="images/clase-azul-lineup.jpg" alt="Clase Azul Collection" loading="lazy" />
+   420→   420→          </div>
+   421→   421→          <div class="brand-scene__text">
+   422→   422→            <p class="brand-scene__eyebrow">Clase Azul</p>
+   423→   423→            <h2 class="brand-scene__title">
+   424→   424→              Art in<br />
+   425→   425→              <span class="brand-scene__title--gold">Every Bottle.</span>
+   426→   426→            </h2>
+   427→   427→            <p class="brand-scene__desc">
+   428→   428→              Each Clase Azul decanter is a one-of-a-kind work of art, hand-painted by artisans
+   429→   429→              in Santa Maria Canchesda, Michoac&aacute;n. No two decanters are alike. From the iconic
+   430→   430→              white-and-blue Reposado to the volcanic-stone Ultra, Clase Azul transforms the ritual
+   431→   431→              of drinking into something truly unforgettable.
+   432→   432→            </p>
+   433→   433→            <a href="clase-azul.html" class="btn btn--gold">Discover Clase Azul <i class="fas fa-arrow-right" style="margin-left:8px;font-size:0.7em;"></i></a>
+   434→   434→          </div>
+   435→   435→        </div>
+   436→   436→      </div>
+   437→   437→    </section>
+   438→   438→
+   439→   439→    <!-- ======= ALFRED GIRAUD BRAND INTRO ======= -->
+   440→   440→    <section id="scene-alfred-giraud" class="scene scene-alfred-giraud brand-scene" aria-label="Alfred Giraud French Whisky">
+   441→   441→      <div class="container">
+   442→   442→        <div class="brand-scene__grid">
+   443→   443→          <div class="brand-scene__text">
+   444→   444→            <p class="brand-scene__eyebrow">Alfred Giraud</p>
+   445→   445→            <h2 class="brand-scene__title">
+   446→   446→              Triple Malt.<br />
+   447→   447→              <span class="brand-scene__title--gold">Triple Wood.</span>
+   448→   448→            </h2>
+   449→   449→            <p class="brand-scene__desc">
+   450→   450→              In the heart of Cognac, France, the House of Giraud applies centuries of
+   451→   451→              distillation mastery to create whiskies of extraordinary depth. Three different
+   452→   452→              malts, three distinct casks — a complexity that defies convention.
+   453→   453→            </p>
+   454→   454→            <a href="alfred-giraud.html" class="btn btn--gold">Discover Alfred Giraud <i class="fas fa-arrow-right" style="margin-left:8px;font-size:0.7em;"></i></a>
+   455→   455→          </div>
+   456→   456→          <div class="brand-scene__image">
+   457→   457→            <img src="images/alfred-giraud-lineup.png" alt="Alfred Giraud French Whisky Collection" loading="lazy" />
+   458→   458→          </div>
+   459→   459→        </div>
+   460→   460→      </div>
+   461→   461→    </section>
+   462→   462→
+   463→   463→    <!-- ======= GLENDRONACH BRAND INTRO ======= -->
+   464→   464→    <section id="scene-glendronach" class="scene scene-glendronach brand-scene brand-scene--reverse" aria-label="GlenDronach Highland Single Malt Scotch Whisky">
+   465→   465→      <div class="container">
+   466→   466→        <div class="brand-scene__grid">
+   467→   467→          <div class="brand-scene__text">
+   468→   468→            <p class="brand-scene__eyebrow">GlenDronach</p>
+   469→   469→            <h2 class="brand-scene__title">
+   470→   470→              Richly Sherried.<br />
+   471→   471→              <span class="brand-scene__title--gold">Since 1826.</span>
+   472→   472→            </h2>
+   473→   473→            <p class="brand-scene__desc">
+   474→   474→              From the Valley of Forgue in the Scottish Highlands, GlenDronach has been
+   475→   475→              producing richly sherried single malts for nearly two centuries — matured exclusively
+   476→   476→              in the finest Oloroso and Pedro Ximénez casks from Andalucía, Spain.
+   477→   477→            </p>
+   478→   478→            <a href="glendronach.html" class="btn btn--gold">Discover GlenDronach <i class="fas fa-arrow-right" style="margin-left:8px;font-size:0.7em;"></i></a>
+   479→   479→          </div>
+   480→   480→          <div class="brand-scene__image">
+   481→   481→            <img src="images/glendronach-lineup.png" alt="GlenDronach Highland Single Malt Scotch Whisky Collection" loading="lazy" />
+   482→   482→          </div>
+   483→   483→        </div>
+   484→   484→      </div>
+   485→   485→    </section>
+   486→   486→
+   487→   487→    <!-- ======= NIKKA BRAND INTRO ======= -->
+   488→   488→    <section id="scene-nikka" class="scene scene-nikka brand-scene" aria-label="Nikka Japanese Whisky">
+   489→   489→      <div class="container">
+   490→   490→        <div class="brand-scene__grid">
+   491→   491→          <div class="brand-scene__text">
+   492→   492→            <p class="brand-scene__eyebrow">Nikka</p>
+   493→   493→            <h2 class="brand-scene__title">
+   494→   494→              Crafted by the Father of<br />
+   495→   495→              <span class="brand-scene__title--gold">Japanese Whisky.</span>
+   496→   496→            </h2>
+   497→   497→            <p class="brand-scene__desc">
+   498→   498→              From the smoky coast of Yoichi to the gentle valley of Miyagikyo,
+   499→   499→              Nikka unites two very different distilleries in the pursuit of
+   500→   500→              remarkable Japanese whisky — premium blends, pure malts and
+   501→   501→              single malts of rare balance and elegance.
+   502→   502→            </p>
+   503→   503→            <a href="nikka.html" class="btn btn--gold">Discover Nikka <i class="fas fa-arrow-right" style="margin-left:8px;font-size:0.7em;"></i></a>
+   504→   504→          </div>
+   505→   505→          <div class="brand-scene__image">
+   506→   506→            <img src="images/nikka-lineup.png" alt="Nikka Japanese Whisky Collection" loading="lazy" />
+   507→   507→          </div>
+   508→   508→        </div>
+   509→   509→      </div>
+   510→   510→    </section>
+   511→   511→
+   512→   512→    <!-- ======= NEW ARRIVALS CAROUSEL ======= -->
+   513→   513→    <section id="scene-arrivals" class="scene scene-arrivals arrivals-section" aria-label="New Arrivals">
+   514→   514→      <div class="container">
+   515→   515→        <div class="arrivals-header">
+   516→   516→          <p class="section-eyebrow stagger-line">New Arrivals</p>
+   517→   517→          <h2 class="section-title stagger-line">Clase Azul Has Landed</h2>
+   518→   518→          <p class="section-subtitle stagger-line">Explore our latest collection — hand-painted porcelain and masterfully aged tequila.</p>
+   519→   519→        </div>
+   520→   520→        <div class="arrivals-carousel-wrap">
+   521→   521→          <button class="arrivals-arrow arrivals-arrow--prev" aria-label="Previous items"><i class="fas fa-chevron-left"></i></button>
+   522→   522→          <div class="arrivals-carousel" id="arrivalsCarousel">
+   523→   523→
+   524→   524→            <!-- Clase Azul Plata -->
+   525→   525→            <div class="shop-card shop-card--carousel" data-brand="clase-azul" data-category="tequila">
+   526→   526→              <div class="shop-card__img-wrap shop-card__img-wrap--carousel">
+   527→   527→                <img src="images/clase-azul-plata.jpg" alt="Clase Azul Plata" class="shop-card__img shop-card__img--bottle" />
+   528→   528→              </div>
+   529→   529→              <div class="shop-card__info shop-card__info--carousel">
+   530→   530→                <p class="shop-card__type">Plata · 750ml</p>
+   531→   531→                <h4 class="shop-card__name">Clase Azul Plata</h4>
+   532→   532→                <p class="shop-card__desc">Crystal clear plata capturing the pure essence of Blue Weber Agave with notes of citrus and herbs.</p>
+   533→   533→                <p class="shop-card__price">HK$1,898</p>
+   534→   534→                <button class="btn btn--gold btn--sm add-to-cart" data-name="Clase Azul Plata" data-price="1898" data-img="images/clase-azul-plata.jpg">Add to Cart</button>
+   535→   535→              </div>
+   536→   536→            </div>
+   537→   537→
+   538→   538→            <!-- Clase Azul Reposado -->
+   539→   539→            <div class="shop-card shop-card--carousel" data-brand="clase-azul" data-category="tequila">
+   540→   540→              <div class="shop-card__img-wrap shop-card__img-wrap--carousel">
+   541→   541→                <img src="images/clase-azul-reposado.jpg" alt="Clase Azul Reposado" class="shop-card__img shop-card__img--bottle" />
+   542→   542→              </div>
+   543→   543→              <div class="shop-card__info shop-card__info--carousel">
+   544→   544→                <p class="shop-card__type">Reposado · 750ml</p>
+   545→   545→                <h4 class="shop-card__name">Clase Azul Reposado</h4>
+   546→   546→                <p class="shop-card__desc">The iconic matte white decanter with hand-painted blue design. Notes of vanilla, caramel, and toasted oak.</p>
+   547→   547→                <p class="shop-card__price">HK$1,898</p>
+   548→   548→                <button class="btn btn--gold btn--sm add-to-cart" data-name="Clase Azul Reposado" data-price="1898" data-img="images/clase-azul-reposado.jpg">Add to Cart</button>
+   549→   549→              </div>
+   550→   550→            </div>
+   551→   551→
+   552→   552→            <!-- Clase Azul Gold -->
+   553→   553→            <div class="shop-card shop-card--carousel shop-card--gold" data-brand="clase-azul" data-category="tequila">
+   554→   554→              <div class="shop-card__img-wrap shop-card__img-wrap--carousel">
+   555→   555→                <img src="images/clase-azul-gold.jpg" alt="Clase Azul Gold" class="shop-card__img shop-card__img--bottle" />
+   556→   556→              </div>
+   557→   557→              <div class="shop-card__info shop-card__info--carousel">
+   558→   558→                <p class="shop-card__type">Gold · 750ml</p>
+   559→   559→                <h4 class="shop-card__name">Clase Azul Gold</h4>
+   560→   560→                <p class="shop-card__desc">A masterful blend of reposado and extra añejo, presented in a stunning gold-decorated decanter.</p>
+   561→   561→                <p class="shop-card__price">HK$3,998</p>
+   562→   562→                <button class="btn btn--gold btn--sm add-to-cart" data-name="Clase Azul Gold" data-price="3998" data-img="images/clase-azul-gold.jpg">Add to Cart</button>
+   563→   563→              </div>
+   564→   564→            </div>
+   565→   565→
+   566→   566→            <!-- Clase Azul Añejo -->
+   567→   567→            <div class="shop-card shop-card--carousel" data-brand="clase-azul" data-category="tequila">
+   568→   568→              <div class="shop-card__img-wrap shop-card__img-wrap--carousel">
+   569→   569→                <img src="images/clase-azul-anejo.jpg" alt="Clase Azul Añejo" class="shop-card__img shop-card__img--bottle" />
+   570→   570→              </div>
+   571→   571→              <div class="shop-card__info shop-card__info--carousel">
+   572→   572→                <p class="shop-card__type">Añejo · 750ml</p>
+   573→   573→                <h4 class="shop-card__name">Clase Azul Añejo</h4>
+   574→   574→                <p class="shop-card__desc">Rich notes of dark chocolate, dried cherry, vanilla, and clove. Deep blue hand-painted decanter.</p>
+   575→   575→                <p class="shop-card__price">HK$8,198</p>
+   576→   576→                <button class="btn btn--gold btn--sm add-to-cart" data-name="Clase Azul Añejo" data-price="8198" data-img="images/clase-azul-anejo.jpg">Add to Cart</button>
+   577→   577→              </div>
+   578→   578→            </div>
+   579→   579→
+   580→   580→            <!-- Clase Azul Durango Mezcal -->
+   581→   581→            <div class="shop-card shop-card--carousel" data-brand="clase-azul" data-category="mezcal">
+   582→   582→              <div class="shop-card__img-wrap shop-card__img-wrap--carousel">
+   583→   583→                <img src="images/clase-azul-durango.jpg" alt="Clase Azul Durango Mezcal" class="shop-card__img shop-card__img--bottle" />
+   584→   584→              </div>
+   585→   585→              <div class="shop-card__info shop-card__info--carousel">
+   586→   586→                <p class="shop-card__type">Mezcal Durango · 750ml</p>
+   587→   587→                <h4 class="shop-card__name">Clase Azul Durango</h4>
+   588→   588→                <p class="shop-card__desc">Artisanal mezcal from wild Cenizo agave. Earthy smoke, tropical fruit, minerality.</p>
+   589→   589→                <p class="shop-card__price">HK$4,498</p>
+   590→   590→                <button class="btn btn--gold btn--sm add-to-cart" data-name="Clase Azul Durango" data-price="4498" data-img="images/clase-azul-durango.jpg">Add to Cart</button>
+   591→   591→              </div>
+   592→   592→            </div>
+   593→   593→
+   594→   594→            <!-- Clase Azul Guerrero Mezcal -->
+   595→   595→            <div class="shop-card shop-card--carousel" data-brand="clase-azul" data-category="mezcal">
+   596→   596→              <div class="shop-card__img-wrap shop-card__img-wrap--carousel">
+   597→   597→                <img src="images/clase-azul-guerrero.jpg" alt="Clase Azul Guerrero Mezcal" class="shop-card__img shop-card__img--bottle" />
+   598→   598→              </div>
+   599→   599→              <div class="shop-card__info shop-card__info--carousel">
+   600→   600→                <p class="shop-card__type">Mezcal Guerrero · 750ml</p>
+   601→   601→                <h4 class="shop-card__name">Clase Azul Guerrero</h4>
+   602→   602→                <p class="shop-card__desc">Rich smoky character with roasted agave, citrus, and herbal undertones.</p>
+   603→   603→                <p class="shop-card__price">HK$4,498</p>
+   604→   604→                <button class="btn btn--gold btn--sm add-to-cart" data-name="Clase Azul Guerrero" data-price="4498" data-img="images/clase-azul-guerrero.jpg">Add to Cart</button>
+   605→   605→              </div>
+   606→   606→            </div>
+   607→   607→
+   608→   608→            <!-- Clase Azul San Luis Potosi Mezcal -->
+   609→   609→            <div class="shop-card shop-card--carousel" data-brand="clase-azul" data-category="mezcal">
+   610→   610→              <div class="shop-card__img-wrap shop-card__img-wrap--carousel">
+   611→   611→                <img src="images/clase-azul-slp.jpg" alt="Clase Azul San Luis Potosi Mezcal" class="shop-card__img shop-card__img--bottle" />
+   612→   612→              </div>
+   613→   613→              <div class="shop-card__info shop-card__info--carousel">
+   614→   614→                <p class="shop-card__type">Mezcal SLP · 750ml</p>
+   615→   615→                <h4 class="shop-card__name">Clase Azul San Luis Potosi</h4>
+   616→   616→                <p class="shop-card__desc">Distinctive floral and herbal notes with elegant smoke from wild Salmiana agave.</p>
+   617→   617→                <p class="shop-card__price">HK$4,998</p>
+   618→   618→                <button class="btn btn--gold btn--sm add-to-cart" data-name="Clase Azul San Luis Potosi" data-price="4998" data-img="images/clase-azul-slp.jpg">Add to Cart</button>
+   619→   619→              </div>
+   620→   620→            </div>
+   621→   621→
+   622→   622→          </div>
+   623→   623→          <button class="arrivals-arrow arrivals-arrow--next" aria-label="Next items"><i class="fas fa-chevron-right"></i></button>
+   624→   624→        </div>
+   625→   625→        <div class="arrivals-cta stagger-line">
+   626→   626→          <a href="shop.html" class="btn btn--outline">View All Products <i class="fas fa-arrow-right" style="margin-left:8px;font-size:0.7em;"></i></a>
+   627→   627→        </div>
+   628→   628→      </div>
+   629→   629→    </section>
+   630→   630→
+   631→   631→    <!-- ======= CINEMATIC COCKTAIL GALLERY ======= -->
+   632→   632→    <section id="scene-cocktails" class="scene scene-cocktails cocktails-scene" aria-label="Cocktail Gallery">
+   633→   633→      <div class="container">
+   634→   634→        <div class="cocktails-scene__header">
+   635→   635→          <p class="section-eyebrow stagger-line">Cocktail Gallery</p>
+   636→   636→          <h2 class="section-title stagger-line">Craft Your Serve</h2>
+   637→   637→          <p class="section-subtitle stagger-line">The finest spirits deserve the finest serves. Explore our curated cocktail recipes.</p>
+   638→   638→        </div>
+   639→   639→        <div class="cocktails-scene__grid">
+   640→   640→          <article class="cocktail-tile" data-stagger="0">
+   641→   641→            <div class="cocktail-tile__img-wrap">
+   642→   642→              <img src="images/cocktail-tommys.jpg" alt="Tommy's Margarita" loading="lazy" />
+   643→   643→            </div>
+   644→   644→            <div class="cocktail-tile__body">
+   645→   645→              <h3>Tommy's Margarita</h3>
+   646→   646→              <p>Blanco tequila, fresh lime, agave nectar. The bartender's choice.</p>
+   647→   647→            </div>
+   648→   648→          </article>
+   649→   649→          <article class="cocktail-tile" data-stagger="1">
+   650→   650→            <div class="cocktail-tile__img-wrap">
+   651→   651→              <img src="images/cocktail-paloma.jpg" alt="Paloma" loading="lazy" />
+   652→   652→            </div>
+   653→   653→            <div class="cocktail-tile__body">
+   654→   654→              <h3>Paloma</h3>
+   655→   655→              <p>Reposado, grapefruit soda, lime, pinch of salt. A Mexican classic.</p>
+   656→   656→            </div>
+   657→   657→          </article>
+   658→   658→          <article class="cocktail-tile" data-stagger="2">
+   659→   659→            <div class="cocktail-tile__img-wrap">
+   660→   660→              <img src="images/cocktail-reposado-spritz.jpg" alt="Reposado Spritz" loading="lazy" />
+   661→   661→            </div>
+   662→   662→            <div class="cocktail-tile__body">
+   663→   663→              <h3>Reposado Spritz</h3>
+   664→   664→              <p>Reposado tequila, prosecco, soda, grapefruit peel. Effortless and elegant.</p>
+   665→   665→            </div>
+   666→   666→          </article>
+   667→   667→          <article class="cocktail-tile" data-stagger="3">
+   668→   668→            <div class="cocktail-tile__img-wrap">
+   669→   669→              <img src="images/cocktail-anejo-negroni.jpg" alt="Anejo Negroni" loading="lazy" />
+   670→   670→            </div>
+   671→   671→            <div class="cocktail-tile__body">
+   672→   672→              <h3>Anejo Negroni</h3>
+   673→   673→              <p>Anejo tequila, Campari, sweet vermouth, orange twist.</p>
+   674→   674→            </div>
+   675→   675→          </article>
+   676→   676→        </div>
+   677→   677→        <div class="cocktails-scene__cta stagger-line">
+   678→   678→          <a href="cocktails.html" class="btn btn--outline">View All Recipes <i class="fas fa-arrow-right" style="margin-left:8px;font-size:0.7em;"></i></a>
+   679→   679→        </div>
+   680→   680→      </div>
+   681→   681→    </section>
+   682→   682→
+   683→   683→    <!-- ======= CONTACT ======= -->
+   684→   684→    <section id="contact" class="contact">
+   685→   685→      <div class="container">
+   686→   686→        <div class="contact__grid">
+   687→   687→          <div class="contact__info">
+   688→   688→            <p class="section-eyebrow">Get in Touch</p>
+   689→   689→            <h2 class="section-title">Get In Touch</h2>
+   690→   690→            <p>Whether you're interested in wholesale, private dining, corporate gifting, or simply have a question — our Hong Kong team is here for you.</p>
+   691→   691→            <div class="contact__details">
+   692→   692→              <div class="contact__detail">
+   693→   693→                <i class="fas fa-envelope"></i>
+   694→   694→                <div>
+   695→   695→                  <strong>Email</strong>
+   696→   696→                  <a href="mailto:hello@hkdrinks.shop">hello@hkdrinks.shop</a>
+   697→   697→                  <a href="https://www.hkdrinks.shop" target="_blank" rel="noopener" style="font-size:0.78rem;opacity:0.75;">www.hkdrinks.shop</a>
+   698→   698→                </div>
+   699→   699→              </div>
+   700→   700→              <div class="contact__detail">
+   701→   701→                <i class="fas fa-phone"></i>
+   702→   702→                <div>
+   703→   703→                  <strong>Phone / WhatsApp</strong>
+   704→   704→                  <a href="tel:+852****0036">+852 5344 0036</a>
+   705→   705→                </div>
+   706→   706→              </div>
+   707→   707→              <div class="contact__detail">
+   708→   708→                <i class="fas fa-map-marker-alt"></i>
+   709→   709→                <div>
+   710→   710→                  <strong>Office</strong>
+   711→   711→                  <span>Central, Hong Kong</span>
+   712→   712→                </div>
+   713→   713→              </div>
+   714→   714→              <div class="contact__detail">
+   715→   715→                <i class="fas fa-clock"></i>
+   716→   716→                <div>
+   717→   717→                  <strong>Hours</strong>
+   718→   718→                  <span>Mon–Sat, 9am – 7pm HKT</span>
+   719→   719→                </div>
+   720→   720→              </div>
+   721→   721→            </div>
+   722→   722→            <div class="contact__social">
+   723→   723→              <a href="https://www.instagram.com/hongkongdrinks" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+   724→   724→              <a href="https://www.facebook.com/hkdrinks" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+   725→   725→              <a href="#" aria-label="WeChat"><i class="fab fa-weixin"></i></a>
+   726→   726→              <a href="https://www.youtube.com/@hkdrinks" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+   727→   727→            </div>
+   728→   728→          </div>
+   729→   729→          <div class="contact__form-wrap">
+   730→   730→            <form id="contact-form" class="contact-form">
+   731→   731→              <div class="form-row">
+   732→   732→                <div class="form-group">
+   733→   733→                  <label for="cf-name">First Name</label>
+   734→   734→                  <input type="text" id="cf-name" placeholder="Your Name" required />
+   735→   735→                </div>
+   736→   736→                <div class="form-group">
+   737→   737→                  <label for="cf-last">Last Name</label>
+   738→   738→                  <input type="text" id="cf-last" placeholder="Last Name" required />
+   739→   739→                </div>
+   740→   740→              </div>
+   741→   741→              <div class="form-group">
+   742→   742→                <label for="cf-email">Email</label>
+   743→   743→                <input type="email" id="cf-email" placeholder="your@email.com" required />
+   744→   744→              </div>
+   745→   745→              <div class="form-group">
+   746→   746→                <label for="cf-phone">Phone / WhatsApp</label>
+   747→   747→                <input type="tel" id="cf-phone" placeholder="+852 XXXX XXXX" />
+   748→   748→              </div>
+   749→   749→              <div class="form-group">
+   750→   750→                <label for="cf-subject">Subject</label>
+   751→   751→                <select id="cf-subject">
+   752→   752→                  <option value="">Select a subject</option>
+   753→   753→                  <option>Product Enquiry</option>
+   754→   754→                  <option>Wholesale / Distribution</option>
+   755→   755→                  <option>Corporate Gifting</option>
+   756→   756→                  <option>Restaurant / Bar Listing</option>
+   757→   757→                  <option>Event / Tasting</option>
+   758→   758→                  <option>Other</option>
+   759→   759→                </select>
+   760→   760→              </div>
+   761→   761→              <div class="form-group">
+   762→   762→                <label for="cf-message">Message</label>
+   763→   763→                <textarea id="cf-message" rows="5" placeholder="Tell us how we can help..."></textarea>
+   764→   764→              </div>
+   765→   765→              <button type="submit" class="btn btn--gold btn--full">Send Message</button>
+   766→   766→              <p class="form-success hidden" id="form-success"><i class="fas fa-check-circle"></i> Message sent! We'll be in touch soon.</p>
+   767→   767→            </form>
+   768→   768→          </div>
+   769→   769→        </div>
+   770→   770→      </div>
+   771→   771→    </section>
+   772→   772→
+   773→   773→    <!-- ======= FAQ SECTION ======= -->
+   774→   774→    <section id="faq" class="faq-section" aria-label="Frequently Asked Questions">
+   775→   775→      <div class="container">
+   776→   776→        <div class="section-header">
+   777→   777→          <p class="section-eyebrow">FAQ</p>
+   778→   778→          <h2 class="section-title">Common Questions</h2>
+   779→   779→        </div>
+   780→   780→        <div class="faq-grid">
+   781→   781→          <div class="faq-item">
+   782→   782→            <h3 class="faq-question">What premium spirits do you offer in Hong Kong?</h3>
+   783→   783→            <p class="faq-answer">HK Drinks specialises in premium Mexican spirits available for delivery across Hong Kong. Our collection includes the complete Cincoro tequila range — Blanco, Reposado, Anejo, Extra Anejo and Gold — as well as Clase Azul tequilas and mezcals, each presented in their iconic hand-painted ceramic decanters.</p>
+   784→   784→          </div>
+   785→   785→          <div class="faq-item">
+   786→   786→            <h3 class="faq-question">How fast is delivery in Hong Kong?</h3>
+   787→   787→            <p class="faq-answer">HK Drinks delivers within 48 hours across Hong Kong Island and Kowloon, and within 48 hours across New Territories. Free delivery is available on all orders. An adult (18+) must be present to receive the delivery as required by Hong Kong law.</p>
+   788→   788→          </div>
+   789→   789→          <div class="faq-item">
+   790→   790→            <h3 class="faq-question">What is Cincoro tequila?</h3>
+   791→   791→            <p class="faq-answer">Cincoro is a luxury tequila brand co-founded in 2019 by five NBA team owners: Michael Jordan (Charlotte Hornets), Jeanie Buss (Los Angeles Lakers), Wes Edens (Milwaukee Bucks), Wyc Grousbeck (Boston Celtics), and Emilia Fazzalari. The name combines the Spanish words 'cinco' (five) and 'oro' (gold). Produced in the highlands of Jalisco, Mexico, Cincoro offers five expressions from Blanco to Gold.</p>
+   792→   792→          </div>
+   793→   793→          <div class="faq-item">
+   794→   794→            <h3 class="faq-question">What payment methods are accepted?</h3>
+   795→   795→            <p class="faq-answer">We accept all major credit and debit cards (Visa, Mastercard, Amex, UnionPay, Apple Pay, Google Pay) via Stripe, FPS (Faster Payment System) compatible with all Hong Kong banks, and PayMe by HSBC.</p>
+   796→   796→          </div>
+   797→   797→          <div class="faq-item">
+   798→   798→            <h3 class="faq-question">What makes Clase Azul special?</h3>
+   799→   799→            <p class="faq-answer">Clase Azul is renowned for its iconic hand-painted ceramic decanters, each crafted by artisans in the Mexican village of Santa Maria Canchesda, Michoacan. Founded in 1989, Clase Azul produces exceptional tequilas and mezcals that are as much art as they are spirit — each decanter is a unique piece, painted by hand and signed by the artist.</p>
+   800→   800→          </div>
+   801→   801→          <div class="faq-item">
+   802→   802→            <h3 class="faq-question">What are the best tequila bars in Hong Kong?</h3>
+   803→   803→            <p class="faq-answer">Some of the best bars for enjoying tequila in Hong Kong include COA, Tequila on Davis, El Taquero, La Vista, Tequila Mex, and Club 33. COA was listed as THE best bar in Asia's 50 Best Bars from 2021-2023, so it's a great place to start!</p>
+   804→   804→          </div>
+   805→   805→        </div>
+   806→   806→      </div>
+   807→   807→    </section>
+   808→   808→
+   809→   809→    <!-- ======= FOOTER ======= -->
+   810→   810→    <footer class="footer">
+   811→   811→      <div class="container">
+   812→   812→        <div class="footer__top">
+   813→   813→          <div class="footer__brand">
+   814→   814→            <div class="footer__logo">
+   815→   815→              <img src="images/logo-gold.png" alt="HK Drinks" class="footer__logo-img" />
+   816→   816→            </div>
+   817→   817→            <p class="footer__tagline">Hong Kong's home of<br />premium spirits.</p>
+   818→   818→          </div>
+   819→   819→
+   820→   820→          <div class="footer__nav">
+   821→   821→            <h5>Explore</h5>
+   822→   822→            <ul>
+   823→   823→              <li><a href="index.html">Home</a></li>
+   824→   824→              <li><a href="shop.html">Shop All</a></li>
+   825→   825→              <li><a href="cocktails.html">Cocktail Recipes</a></li>
+   826→   826→              <li><a href="about.html">Our Story</a></li>
+   827→   827→            </ul>
+   828→   828→          </div>
+   829→   829→
+   830→   830→          <div class="footer__nav">
+   831→   831→            <h5>Services</h5>
+   832→   832→            <ul>
+   833→   833→              <li><a href="#contact">Wholesale Enquiries</a></li>
+   834→   834→              <li><a href="#contact">Corporate Gifting</a></li>
+   835→   835→              <li><a href="#contact">Restaurant &amp; Bar</a></li>
+   836→   836→              <li><a href="#contact">Private Events</a></li>
+   837→   837→            </ul>
+   838→   838→          </div>
+   839→   839→
+   840→   840→          <div class="footer__nav">
+   841→   841→            <h5>Legal</h5>
+   842→   842→            <ul>
+   843→   843→              <li><a href="https://www.hkdrinks.shop/terms">Terms &amp; Conditions</a></li>
+   844→   844→              <li><a href="https://www.hkdrinks.shop/privacy">Privacy Policy</a></li>
+   845→   845→              <li><a href="https://www.hkdrinks.shop/delivery">Delivery Policy</a></li>
+   846→   846→              <li><a href="https://www.hkdrinks.shop/returns">Returns Policy</a></li>
+   847→   847→            </ul>
+   848→   848→          </div>
+   849→   849→        </div>
+   850→   850→
+   851→   851→        <div class="footer__bottom">
+   852→   852→          <div class="footer__hk-notice">
+   853→   853→            <p class="footer__hk-notice-en">Under the law of Hong Kong, intoxicating liquor must not be sold or supplied to a minor in the course of business.</p>
+   854→   854→            <p class="footer__hk-notice-zh">根據香港法律，不得在業務過程中，向未成年人售賣或供應令人醺醉的酒類。</p>
+   855→   855→            <p class="footer__hk-notice-hotline">衛生署控煙酒辦公室 &nbsp;·&nbsp; 查詢及投訴熱線：2961 8823</p>
+   856→   856→          </div>
+   857→   857→          <p class="footer__legal">HK Drinks · Authorised Retailer · Site built and operated by Barkhams Digital · <a href="https://www.barkhamsdigital.com" style="color:inherit;" target="_blank" rel="noopener">www.barkhamsdigital.com</a><br />
+   858→   858→          © 2026 Hong Kong Tequila Ltd. All Rights Reserved. Cincoro® is a registered trademark of Cincoro Tequila LLC. All brand names and trademarks are property of their respective owners.</p>
+   859→   859→          <p class="footer__drink-resp"><strong>Please Drink Responsibly.</strong> Do not drink and drive. Not for sale to persons under 18 years of age.</p>
+   860→   860→        </div>
+   861→   861→      </div>
+   862→   862→    </footer>
+   863→   863→
+   864→   864→    <!-- TOAST NOTIFICATION -->
+   865→   865→    <div id="toast" class="toast"></div>
+   866→   866→
+   867→   867→    <!-- ======= CHECKOUT MODAL (3-step) ======= -->
+   868→   868→    <div id="checkout-modal" class="modal hidden">
+   869→   869→      <div class="modal__overlay" id="modal-overlay"></div>
+   870→   870→      <div class="modal__inner co-modal">
+   871→   871→
+   872→   872→        <!-- STEP INDICATOR -->
+   873→   873→        <div class="co-steps">
+   874→   874→          <div class="co-step active" id="step-ind-1">
+   875→   875→            <div class="co-step__num">1</div>
+   876→   876→            <span>Details</span>
+   877→   877→          </div>
+   878→   878→          <div class="co-step__line"></div>
+   879→   879→          <div class="co-step" id="step-ind-2">
+   880→   880→            <div class="co-step__num">2</div>
+   881→   881→            <span>Payment</span>
+   882→   882→          </div>
+   883→   883→          <div class="co-step__line"></div>
+   884→   884→          <div class="co-step" id="step-ind-3">
+   885→   885→            <div class="co-step__num">3</div>
+   886→   886→            <span>Confirm</span>
+   887→   887→          </div>
+   888→   888→        </div>
+   889→   889→
+   890→   890→        <button class="modal__close" id="modal-close"><i class="fas fa-times"></i></button>
+   891→   891→
+   892→   892→        <!-- STEP 1 : Delivery Details -->
+   893→   893→        <div id="co-step-1" class="co-pane">
+   894→   894→          <h3 class="modal__title">Your Details</h3>
+   895→   895→          <p class="modal__sub">Tell us where to deliver your order in Hong Kong.</p>
+   896→   896→          <form id="checkout-form" novalidate>
+   897→   897→            <div class="form-row">
+   898→   898→              <div class="form-group">
+   899→   899→                <label>First Name</label>
+   900→   900→                <input type="text" id="co-name" placeholder="First Name" required />
+   901→   901→              </div>
+   902→   902→              <div class="form-group">
+   903→   903→                <label>Last Name</label>
+   904→   904→                <input type="text" id="co-last" placeholder="Last Name" required />
+   905→   905→              </div>
+   906→   906→            </div>
+   907→   907→            <div class="form-group">
+   908→   908→              <label>WhatsApp / Phone</label>
+   909→   909→              <input type="tel" id="co-phone" placeholder="+852 XXXX XXXX" required />
+   910→   910→            </div>
+   911→   911→            <div class="form-group">
+   912→   912→              <label>Email</label>
+   913→   913→              <input type="email" id="co-email" placeholder="your@email.com" required />
+   914→   914→            </div>
+   915→   915→            <div class="form-group">
+   916→   916→              <label>Delivery Address</label>
+   917→   917→              <input type="text" id="co-address" placeholder="Flat/Floor, Building, Street" required />
+   918→   918→            </div>
+   919→   919→            <div class="form-row">
+   920→   920→              <div class="form-group">
+   921→   921→                <label>District</label>
+   922→   922→                <select id="co-district" required>
+   923→   923→                  <option value="">Select District</option>
+   924→   924→                  <option>Central &amp; Western</option>
+   925→   925→                  <option>Wan Chai</option>
+   926→   926→                  <option>Eastern</option>
+   927→   927→                  <option>Southern</option>
+   928→   928→                  <option>Yau Tsim Mong</option>
+   929→   929→                  <option>Kowloon City</option>
+   930→   930→                  <option>Sham Shui Po</option>
+   931→   931→                  <option>Wong Tai Sin</option>
+   932→   932→                  <option>Kwun Tong</option>
+   933→   933→                  <option>Islands</option>
+   934→   934→                  <option>Kwai Tsing</option>
+   935→   935→                  <option>North</option>
+   936→   936→                  <option>Sai Kung</option>
+   937→   937→                  <option>Sha Tin</option>
+   938→   938→                  <option>Tai Po</option>
+   939→   939→                  <option>Tsuen Wan</option>
+   940→   940→                  <option>Tuen Mun</option>
+   941→   941→                  <option>Yuen Long</option>
+   942→   942→                </select>
+   943→   943→              </div>
+   944→   944→              <div class="form-group">
+   945→   945→                <label>Delivery Notes</label>
+   946→   946→                <textarea id="co-time" rows="3" placeholder="e.g. Please leave at reception, call on arrival, preferred delivery time…" style="resize:vertical;"></textarea>
+   947→   947→              </div>
+   948→   948→            </div>
+   949→   949→            <div id="co-order-summary" class="co-order-summary"></div>
+   950→   950→            <button type="submit" class="btn btn--gold btn--full">
+   951→   951→              Continue to Payment <i class="fas fa-arrow-right" style="margin-left:8px;font-size:0.7em;"></i>
+   952→   952→            </button>
+   953→   953→          </form>
+   954→   954→        </div>
+   955→   955→
+   956→   956→        <!-- STEP 2 : Choose Payment Method -->
+   957→   957→        <div id="co-step-2" class="co-pane hidden">
+   958→   958→          <h3 class="modal__title">Choose Payment</h3>
+   959→   959→          <p class="modal__sub">Select your preferred payment method. Both are instant, free, and trusted across Hong Kong.</p>
+   960→   960→
+   961→   961→          <!-- Amount badge -->
+   962→   962→          <div class="pay-amount-badge">
+   963→   963→            <span class="pay-amount-label">Amount Due</span>
+   964→   964→            <span class="pay-amount-value" id="pay-amount-display">HK$0</span>
+   965→   965→          </div>
+   966→   966→
+   967→   967→          <!-- Method selector -->
+   968→   968→          <div class="pay-methods">
+   969→   969→
+   970→   970→            <!-- FPS — hidden until ready to go live -->
+   971→   971→            <button class="pay-method-btn" id="btn-fps" data-method="fps" style="display:none;">
+   972→   972→              <div class="pay-method-btn__logo">
+   973→   973→                <svg viewBox="0 0 80 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="80" height="32">
+   974→   974→                  <rect width="80" height="32" rx="4" fill="#E8380D"/>
+   975→   975→                  <text x="8" y="22" font-family="Arial,sans-serif" font-weight="700" font-size="13" fill="white">FPS</text>
+   976→   976→                  <text x="36" y="13" font-family="Arial,sans-serif" font-size="6.5" fill="rgba(255,255,255,0.85)">轉數快</text>
+   977→   977→                  <text x="36" y="23" font-family="Arial,sans-serif" font-size="5.5" fill="rgba(255,255,255,0.7)">Faster Payment</text>
+   978→   978→                </svg>
+   979→   979→              </div>
+   980→   980→              <div class="pay-method-btn__info">
+   981→   981→                <strong>FPS — Faster Payment System</strong>
+   982→   982→                <span>Scan QR with any HK banking app · Free · Instant</span>
+   983→   983→              </div>
+   984→   984→              <div class="pay-method-btn__check"><i class="fas fa-check-circle"></i></div>
+   985→   985→            </button>
+   986→   986→
+   987→   987→            <!-- Credit Card (Stripe) -->
+   988→   988→            <button class="pay-method-btn" id="btn-card" data-method="card">
+   989→   989→              <div class="pay-method-btn__logo">
+   990→   990→                <svg viewBox="0 0 80 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="80" height="32">
+   991→   991→                  <rect width="80" height="32" rx="4" fill="#1a1a2e"/>
+   992→   992→                  <!-- Visa -->
+   993→   993→                  <text x="5" y="21" font-family="Arial,sans-serif" font-weight="900" font-size="11" fill="#1A1F71"
+   994→   994→                    style="paint-order:stroke" stroke="#fff" stroke-width="0.3">VISA</text>
+   995→   995→                  <!-- MC circles -->
+   996→   996→                  <circle cx="52" cy="16" r="7" fill="#EB001B" opacity="0.92"/>
+   997→   997→                  <circle cx="62" cy="16" r="7" fill="#F79E1B" opacity="0.92"/>
+   998→   998→                  <path d="M57 10.8 A7 7 0 0 1 57 21.2 A7 7 0 0 1 57 10.8Z" fill="#FF5F00"/>
+   999→   999→                </svg>
+  1000→  1000→              </div>
+  1001→  1001→              <div class="pay-method-btn__info">
+  1002→  1002→                <strong>Credit / Debit Card</strong>
+  1003→  1003→                <span>Visa, Mastercard, Amex, UnionPay &amp; Apple / Google Pay · Secured by Stripe</span>
+  1004→  1004→              </div>
+  1005→  1005→              <div class="pay-method-btn__check"><i class="fas fa-check-circle"></i></div>
+  1006→  1006→            </button>
+  1007→  1007→
+  1008→  1008→            <!-- PayMe — hidden until ready to go live -->
+  1009→  1009→            <button class="pay-method-btn" id="btn-payme" data-method="payme" style="display:none;">
+  1010→  1010→              <div class="pay-method-btn__logo">
+  1011→  1011→                <svg viewBox="0 0 80 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="80" height="32">
+  1012→  1012→                  <rect width="80" height="32" rx="4" fill="#D0006F"/>
+  1013→  1013→                  <text x="8" y="21" font-family="Arial,sans-serif" font-weight="700" font-size="11" fill="white">PayMe</text>
+  1014→  1014→                  <text x="8" y="29" font-family="Arial,sans-serif" font-size="5.5" fill="rgba(255,255,255,0.75)">by HSBC</text>
+  1015→  1015→                </svg>
+  1016→  1016→              </div>
+  1017→  1017→              <div class="pay-method-btn__info">
+  1018→  1018→                <strong>PayMe by HSBC</strong>
+  1019→  1019→                <span>Open PayMe app &amp; pay instantly · 1.5% fee · Popular in HK</span>
+  1020→  1020→              </div>
+  1021→  1021→              <div class="pay-method-btn__check"><i class="fas fa-check-circle"></i></div>
+  1022→  1022→            </button>
+  1023→  1023→
+  1024→  1024→          </div>
+  1025→  1025→
+  1026→  1026→          <!-- FPS PANEL -->
+  1027→  1027→          <div id="fps-panel" class="pay-panel hidden">
+  1028→  1028→            <div class="fps-qr-wrap">
+  1029→  1029→              <div class="fps-qr-frame">
+  1030→  1030→                <!-- Dynamic QR is rendered into this canvas by JS (qrcode.js) -->
+  1031→  1031→                <canvas id="fps-qr-canvas"></canvas>
+  1032→  1032→                <div class="fps-qr-scan-line"></div>
+  1033→  1033→              </div>
+  1034→  1034→              <div class="fps-qr-meta">
+  1035→  1035→                <p class="fps-qr-title">Scan to Pay via FPS</p>
+  1036→  1036→                <p class="fps-qr-instructions">Open your bank app → Scan &amp; Pay → Enter <strong id="fps-amount-label">HK$0</strong></p>
+  1037→  1037→                <div class="fps-details">
+  1038→  1038→                  <div class="fps-detail-row">
+  1039→  1039→                    <span>FPS ID</span>
+  1040→  1040→                    <strong id="fps-id-display">1234567</strong>
+  1041→  1041→                    <button class="copy-btn" data-copy="fps-id-display" title="Copy FPS ID"><i class="fas fa-copy"></i></button>
+  1042→  1042→                  </div>
+  1043→  1043→                  <div class="fps-detail-row">
+  1044→  1044→                    <span>Name</span>
+  1045→  1045→                    <strong>Cincoro Tequila HK Ltd</strong>
+  1046→  1046→                  </div>
+  1047→  1047→                  <div class="fps-detail-row">
+  1048→  1048→                    <span>Ref</span>
+  1049→  1049→                    <strong id="fps-ref-display">—</strong>
+  1050→  1050→                    <button class="copy-btn" data-copy="fps-ref-display" title="Copy Reference"><i class="fas fa-copy"></i></button>
+  1051→  1051→                  </div>
+  1052→  1052→                  <div class="fps-detail-row">
+  1053→  1053→                    <span>Amount</span>
+  1054→  1054→                    <strong id="fps-amt-display">HK$0</strong>
+  1055→  1055→                    <button class="copy-btn" data-copy="fps-amt-display" title="Copy Amount"><i class="fas fa-copy"></i></button>
+  1056→  1056→                  </div>
+  1057→  1057→                </div>
+  1058→  1058→                <p class="fps-tip"><i class="fas fa-info-circle"></i> Works with HSBC, Hang Seng, BOC, Standard Chartered, DBS, Citibank and all other HK banks.</p>
+  1059→  1059→              </div>
+  1060→  1060→            </div>
+  1061→  1061→          </div>
+  1062→  1062→
+  1063→  1063→          <!-- PAYME PANEL -->
+  1064→  1064→          <div id="payme-panel" class="pay-panel hidden">
+  1065→  1065→            <div class="payme-wrap">
+  1066→  1066→              <div class="payme-icon">
+  1067→  1067→                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" width="64" height="64">
+  1068→  1068→                  <rect width="64" height="64" rx="16" fill="#D0006F"/>
+  1069→  1069→                  <text x="7" y="38" font-family="Arial,sans-serif" font-weight="700" font-size="18" fill="white">Pay</text>
+  1070→  1070→                  <text x="7" y="54" font-family="Arial,sans-serif" font-weight="700" font-size="18" fill="white">Me</text>
+  1071→  1071→                </svg>
+  1072→  1072→              </div>
+  1073→  1073→              <div class="payme-info">
+  1074→  1074→                <p class="payme-title">Pay with PayMe by HSBC</p>
+  1075→  1075→                <p class="payme-sub">Tap the button below to open PayMe with the amount pre-filled. Complete payment in the app, then return here to confirm.</p>
+  1076→  1076→                <div class="payme-amount-chip">
+  1077→  1077→                  <span>Total:</span>
+  1078→  1078→                  <strong id="payme-amount-chip-val">HK$0</strong>
+  1079→  1079→                </div>
+  1080→  1080→                <a id="payme-deep-link" href="#" class="btn btn--payme" target="_blank" rel="noopener">
+  1081→  1081→                  <svg viewBox="0 0 20 20" width="18" height="18" fill="white" style="margin-right:8px;flex-shrink:0;"><rect width="20" height="20" rx="5" fill="rgba(255,255,255,0.2)"/><text x="3" y="15" font-family="Arial" font-weight="700" font-size="11" fill="white">P</text></svg>
+  1082→  1082→                  Open PayMe App
+  1083→  1083→                </a>
+  1084→  1084→                <p class="payme-fallback">No PayMe app? <a id="payme-phone-link" href="#">Send payment to +852 5344 0036</a> and quote your order reference.</p>
+  1085→  1085→                <div class="payme-ref-row">
+  1086→  1086→                  <span>Your ref:</span>
+  1087→  1087→                  <strong id="payme-ref-display">—</strong>
+  1088→  1088→                  <button class="copy-btn" data-copy="payme-ref-display" title="Copy Reference"><i class="fas fa-copy"></i></button>
+  1089→  1089→                </div>
+  1090→  1090→              </div>
+  1091→  1091→            </div>
+  1092→  1092→          </div>
+  1093→  1093→
+  1094→  1094→          <!-- STRIPE CARD PANEL -->
+  1095→  1095→          <div id="card-panel" class="pay-panel hidden">
+  1096→  1096→            <div class="stripe-wrap">
+  1097→  1097→
+  1098→  1098→              <!-- Setup notice shown before key is entered -->
+  1099→  1099→              <div id="stripe-setup-notice" class="stripe-setup-notice">
+  1100→  1100→                <div class="stripe-setup-notice__icon"><i class="fas fa-key"></i></div>
+  1101→  1101→                <h4>Stripe Not Yet Configured</h4>
+  1102→  1102→                <p>To accept card payments, add your Stripe Publishable Key to the <code>MERCHANT</code> config in <code>js/app.js</code>:</p>
+  1103→  1103→                <pre class="stripe-code-block">stripeKey: 'pk_live_XXXXXXXXXXXXXXXX'</pre>
+  1104→  1104→                <p>Get your key free at <a href="https://dashboard.stripe.com/apikeys" target="_blank" rel="noopener">dashboard.stripe.com <i class="fas fa-external-link-alt"></i></a></p>
+  1105→  1105→              </div>
+  1106→  1106→
+  1107→  1107→              <!-- Live card form (shown once key is present) -->
+  1108→  1108→              <div id="stripe-card-form" class="hidden">
+  1109→  1109→                <div class="stripe-header">
+  1110→  1110→                  <div class="stripe-header__left">
+  1111→  1111→                    <p class="stripe-label">Secure Card Payment</p>
+  1112→  1112→                    <p class="stripe-amount-display">Total: <strong id="stripe-amount-display">HK$0</strong></p>
+  1113→  1113→                  </div>
+  1114→  1114→                  <div class="stripe-header__badges">
+  1115→  1115→                    <span class="stripe-badge"><i class="fas fa-lock"></i> SSL</span>
+  1116→  1116→                    <span class="stripe-badge stripe-badge--stripe">
+  1117→  1117→                      <svg height="14" viewBox="0 0 60 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+  1118→  1118→                        <path d="M27.3 8.6c0-1.3 1.1-1.8 2.8-1.8 2.5 0 5.7.8 8.2 2.1V3.2C35.8 1.8 33.3 1 30 1c-6.4 0-10.7 3.4-10.7 9 0 8.8 12.1 7.4 12.1 11.2 0 1.5-1.3 2-3.1 2-2.7 0-6.2-1.1-8.9-2.6v5.8c3 1.3 6 1.8 8.9 1.8 6.5 0 11-3.2 11-8.9C39.3 10.7 27.3 12.3 27.3 8.6z" fill="#635BFF"/>
+  1119→  1119→                      </svg>
+  1120→  1120→                    </span>
+  1121→  1121→                  </div>
+  1122→  1122→                </div>
+  1123→  1123→
+  1124→  1124→                <!-- Stripe Payment Element mounts here -->
+  1125→  1125→                <div id="stripe-payment-element" class="stripe-element-mount"></div>
+  1126→  1126→
+  1127→  1127→                <!-- Card error message -->
+  1128→  1128→                <div id="stripe-error" class="stripe-error hidden">
+  1129→  1129→                  <i class="fas fa-exclamation-circle"></i>
+  1130→  1130→                  <span id="stripe-error-msg"></span>
+  1131→  1131→                </div>
+  1132→  1132→
+  1133→  1133→                <!-- Pay now button -->
+  1134→  1134→                <button id="stripe-pay-btn" class="btn btn--stripe btn--full" disabled>
+  1135→  1135→                  <i class="fas fa-lock" style="margin-right:8px;"></i>
+  1136→  1136→                  Pay <span id="stripe-btn-amount">HK$0</span> Securely
+  1137→  1137→                </button>
+  1138→  1138→
+  1139→  1139→                <p class="stripe-footnote">
+  1140→  1140→                  <i class="fas fa-shield-alt"></i>
+  1141→  1141→                  Payments are encrypted and processed by <strong>Stripe</strong> — your card details never touch our servers.
+  1142→  1142→                  <a href="https://stripe.com/privacy" target="_blank" rel="noopener">Stripe Privacy Policy</a>
+  1143→  1143→                </p>
+  1144→  1144→              </div>
+  1145→  1145→
+  1146→  1146→            </div>
+  1147→  1147→          </div><!-- /#card-panel -->
+  1148→  1148→
+  1149→  1149→          <!-- Paid / next step -->
+  1150→  1150→          <div class="pay-cta-row" id="pay-cta-row">
+  1151→  1151→            <button class="btn btn--outline co-back-btn" id="co-back-to-1">
+  1152→  1152→              <i class="fas fa-arrow-left" style="margin-right:6px;font-size:0.7em;"></i> Back
+  1153→  1153→            </button>
+  1154→  1154→            <button class="btn btn--gold" id="co-paid-btn" disabled>
+  1155→  1155→              Complete Order <i class="fas fa-arrow-right" style="margin-left:8px;font-size:0.7em;"></i>
+  1156→  1156→            </button>
+  1157→  1157→          </div>
+  1158→  1158→          <p class="modal__note" id="pay-modal-note"><i class="fas fa-lock" style="margin-right:5px;color:var(--gold)"></i>Your order reference is included in the payment so we can match it automatically.</p>
+  1159→  1159→        </div>
+  1160→  1160→
+  1161→  1161→        <!-- STEP 3 : Confirmed -->
+  1162→  1162→        <div id="co-step-3" class="co-pane hidden">
+  1163→  1163→          <div class="order-confirmed">
+  1164→  1164→            <div class="order-confirmed__icon"><i class="fas fa-check-circle"></i></div>
+  1165→  1165→            <h3>Payment Received! 🎉</h3>
+  1166→  1166→            <p>Thank you — your order is confirmed. Our Hong Kong team will WhatsApp you soon to confirm delivery.</p>
+  1167→  1167→            <div class="order-confirmed__ref-box">
+  1168→  1168→              <span>Order Reference</span>
+  1169→  1169→              <strong id="confirmed-ref">—</strong>
+  1170→  1170→            </div>
+  1171→  1171→            <p class="order-confirmed__cheers">Salud! 🥃</p>
+  1172→  1172→            <button class="btn btn--gold" id="co-done-btn" style="margin-top:24px;">Close</button>
+  1173→  1173→          </div>
+  1174→  1174→        </div>
+  1175→  1175→
+  1176→  1176→      </div><!-- /.modal__inner -->
+  1177→  1177→    </div><!-- /#checkout-modal -->
+  1178→  1178→
+  1179→  1179→  </div><!-- end #main-site -->
+  1180→  1180→
+  1181→  1181→  <!-- ======= WHATSAPP FLOATING BUTTON ======= -->
+  1182→  1182→  <a href="https://wa.me/85253440036?text=Hi!%20I%27m%20interested%20in%20premium%20spirits%20from%20HK%20Drinks." 
+  1183→  1183→     target="_blank" 
+  1184→  1184→     rel="noopener noreferrer" 
+  1185→  1185→     class="whatsapp-float" 
+  1186→  1186→     aria-label="Chat on WhatsApp"
+  1187→  1187→     title="Chat on WhatsApp">
+  1188→  1188→    <i class="fab fa-whatsapp"></i>
+  1189→  1189→  </a>
+  1190→  1190→
+  1191→  1191→  <script src="js/app.js"></script>
+  1192→  1192→  <script src="js/homepage-cinematic.js"></script>
+  1193→  1193→  <script>
+  1194→  1194→    // Defer hero video start — prevents flash from autoplay
+  1195→  1195→    var heroVideo = document.querySelector('.scene-hero__video');
+  1196→  1196→    if (heroVideo) {
+  1197→  1197→      heroVideo.load();
+  1198→  1198→      setTimeout(function() { heroVideo.play(); }, 300);
+  1199→  1199→    }
+  1200→  1200→  </script>
+  1201→  1201→</body>
+  1202→  1202→</html>
+  1203→  1203→

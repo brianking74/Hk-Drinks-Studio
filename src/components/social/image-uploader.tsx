@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useState, useRef } from 'react'
-import { UploadCloud, X, Loader2, ImageIcon } from 'lucide-react'
+import { UploadCloud, X, Loader2, Camera } from 'lucide-react'
 import { usePostStore } from '@/store/post-store'
 import { cn } from '@/lib/utils'
 import { useToast } from '@/hooks/use-toast'
@@ -77,10 +77,11 @@ export function ImageUploader() {
           onDrop={handleDrop}
           onClick={() => inputRef.current?.click()}
           className={cn(
-            'group relative cursor-pointer rounded-xl border-2 border-dashed p-8 sm:p-12 text-center transition-colors',
+            'group relative cursor-pointer rounded-md p-8 sm:p-12 text-center transition-all',
+            'border border-dashed',
             dragActive
-              ? 'border-rose-400 bg-rose-50/50 dark:bg-rose-950/20'
-              : 'border-muted-foreground/30 hover:border-rose-400/60 hover:bg-rose-50/30 dark:hover:bg-rose-950/10'
+              ? 'border-[var(--gold)] bg-[rgba(201,168,76,0.08)]'
+              : 'border-[rgba(201,168,76,0.25)] hover:border-[var(--gold)] hover:bg-[rgba(201,168,76,0.04)]'
           )}
         >
           <input
@@ -94,31 +95,34 @@ export function ImageUploader() {
               e.currentTarget.value = ''
             }}
           />
-          <div className="mx-auto mb-3 flex size-14 items-center justify-center rounded-full bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300">
+          <div className="mx-auto mb-4 flex size-16 items-center justify-center rounded-full border border-[rgba(201,168,76,0.4)] bg-[rgba(201,168,76,0.08)] text-[var(--gold)]">
             {isUploading ? (
               <Loader2 className="size-6 animate-spin" />
             ) : (
               <UploadCloud className="size-6" />
             )}
           </div>
-          <p className="font-medium">
+          <p
+            className="text-white"
+            style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.4rem', fontWeight: 400 }}
+          >
             {isUploading ? 'Uploading…' : 'Drop an image or click to upload'}
           </p>
-          <p className="text-xs text-muted-foreground mt-1">
-            JPG / PNG / WEBP / GIF · up to 12 MB
+          <p className="eyebrow mt-2 text-[0.6rem]">
+            JPG · PNG · WEBP · GIF · up to 12 MB
           </p>
         </div>
       ) : (
-        <div className="relative overflow-hidden rounded-xl border bg-muted/20">
+        <div className="relative overflow-hidden rounded-md border border-[rgba(201,168,76,0.25)] bg-black">
           <img
             src={imageUrl}
             alt="Uploaded preview"
-            className="mx-auto max-h-[420px] w-full object-contain bg-background"
+            className="mx-auto max-h-[460px] w-full object-contain bg-black"
           />
           <button
             type="button"
             onClick={() => reset()}
-            className="absolute right-3 top-3 inline-flex items-center gap-1 rounded-full bg-black/70 px-3 py-1.5 text-xs font-medium text-white backdrop-blur hover:bg-black/80"
+            className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-black/80 px-3 py-1.5 text-xs font-medium uppercase tracking-[0.15em] text-white backdrop-blur hover:bg-black border border-[rgba(201,168,76,0.4)]"
             aria-label="Remove image"
           >
             <X className="size-3.5" /> Remove
@@ -128,10 +132,8 @@ export function ImageUploader() {
 
       {!imageUrl && (
         <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
-          <ImageIcon className="size-3.5" />
-          <span>
-            Tip: clearer drink photos give better captions
-          </span>
+          <Camera className="size-3.5 text-[var(--gold)]" />
+          <span>Tip: clearer bottle shots give better tasting-note captions</span>
         </div>
       )}
     </div>
