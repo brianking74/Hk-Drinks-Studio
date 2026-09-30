@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState, useCallback } from 'react'
-import { Facebook, Instagram, RefreshCw, Trash2, Calendar, CheckCircle2, Clock3, XCircle } from 'lucide-react'
+import { Facebook, Instagram, RefreshCw, Trash2, Calendar, CheckCircle2, Clock3, XCircle, ExternalLink, AlertCircle } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -16,6 +16,9 @@ interface Post {
   status: string
   scheduledAt: string | null
   publishedAt: string | null
+  fbPostId: string | null
+  igPostId: string | null
+  errorMessage: string | null
   createdAt: string
 }
 
@@ -135,6 +138,7 @@ export function PostHistory() {
             {posts.map((p) => {
               const platforms = p.platforms.split(',')
               const sb = STATUS_BADGE[p.status] ?? STATUS_BADGE.draft
+              const fbUrl = p.fbPostId ? `https://www.facebook.com/${p.fbPostId.split('_')[0]}_posts/${p.fbPostId.split('_')[1]}` : null
               return (
                 <div
                   key={p.id}
@@ -152,9 +156,9 @@ export function PostHistory() {
                       </Badge>
                       {platforms.map((pl) =>
                         pl === 'facebook' ? (
-                          <Facebook key="fb" className="size-3.5 text-[#1877F2]" />
+                          <Facebook key="fb" className={`size-3.5 ${p.fbPostId ? 'text-[#1877F2]' : 'text-muted-foreground'}`} />
                         ) : pl === 'instagram' ? (
-                          <Instagram key="ig" className="size-3.5 text-[#DD2A7B]" />
+                          <Instagram key="ig" className={`size-3.5 ${p.igPostId ? 'text-[#DD2A7B]' : 'text-muted-foreground'}`} />
                         ) : null
                       )}
                       <span className="text-xs text-muted-foreground font-sans">
@@ -174,7 +178,13 @@ export function PostHistory() {
                         {p.hashtags}
                       </p>
                     )}
-                    <div className="mt-2 flex gap-2">
+                    {p.errorMessage && (
+                      <p className="mt-1.5 text-xs text-[#f87171] flex items-start gap-1.5">
+                        <AlertCircle className="size-3 mt-0.5 shrink-0" />
+                        <span className="line-clamp-2">{p.errorMessage}</span>
+                      </p>
+                    )}
+                    <div className="mt-2 flex flex-wrap gap-2">
                       {p.status === 'scheduled' && (
                         <Button
                           size="sm"
@@ -184,6 +194,36 @@ export function PostHistory() {
                         >
                           Post now
                         </Button>
+                      )}
+                      {p.status === 'failed' && (
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => retryPost(p.id)}
+                          className="btn-lux h-7 border-[#f87171] text-[#f87171] hover:bg-[rgba(179,38,30,0.08)] hover:text-[#f87171]"
+                        >
+                          Retry
+                        </Button>
+                      )}
+                      {fbUrl && (
+                        <a
+                          href={fbUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-1 h-7 px-3 text-xs uppercase tracking-[0.15em] font-medium text-[#1877F2] hover:bg-[rgba(24,119,242,0.1)] rounded-md transition-colors"
+                        >
+                          <ExternalLink className="size-3" /> FB
+                        </a>
+                      )}
+                      {p.igPostId && (
+                        <a
+                          href={`https://www.instagram.com/p/${p.igPostId}/`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-1 h-7 px-3 text-xs uppercase tracking-[0.15em] font-medium text-[#DD2A7B] hover:bg-[rgba(221,42,123,0.1)] rounded-md transition-colors"
+                        >
+                          <ExternalLink className="size-3" /> IG
+                        </a>
                       )}
                       <Button
                         size="sm"

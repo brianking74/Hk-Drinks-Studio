@@ -79,12 +79,33 @@ export function PublishPanel() {
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || 'Publish failed')
-      toast({
-        title: scheduleMode ? 'Scheduled!' : 'Published!',
-        description: scheduleMode
-          ? `Will post at ${new Date(scheduledAt).toLocaleString()}`
-          : `Went live on ${draft.platforms.join(' + ')}.`,
-      })
+
+      if (scheduleMode) {
+        toast({
+          title: 'Scheduled!',
+          description: `Will post at ${new Date(scheduledAt).toLocaleString()}`,
+        })
+      } else if (data.errors?.length > 0 && !data.ok) {
+        // Both platforms failed
+        toast({
+          title: 'Publish failed',
+          description: data.errors.join(' | '),
+          variant: 'destructive',
+        })
+      } else if (data.errors?.length > 0) {
+        // Partial success
+        const succeeded = draft.platforms.filter(p => !data.errors.some((e: string) => e.toLowerCase().startsWith(p)))
+        toast({
+          title: 'Partial publish',
+          description: `Posted to ${succeeded.join(' + ')}, but: ${data.errors.join('; ')}`,
+          variant: 'default',
+        })
+      } else {
+        toast({
+          title: 'Published!',
+          description: `Went live on ${draft.platforms.join(' + ')}.`,
+        })
+      }
       reset()
       setScheduledAt('')
       setScheduleMode(false)
@@ -202,8 +223,7 @@ export function PublishPanel() {
       </Button>
 
       <p className="text-xs text-muted-foreground text-center leading-relaxed">
-        Demo mode: posts are saved to your local history, not yet pushed to live Meta accounts.
-        Wire your Meta credentials when ready to make it live.
+        Posts publish live to your Meta accounts via the Graph API. See your post history below for direct links.
       </p>
     </div>
   )

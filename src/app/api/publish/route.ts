@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
+import { publishToFacebook, publishToInstagram } from '@/lib/meta'
 
 export const runtime = 'nodejs'
+// Real Meta Graph API calls can take a few seconds each
+export const maxDuration = 60
 
 interface PublishBody {
   imageUrl: string
@@ -9,37 +12,6 @@ interface PublishBody {
   hashtags?: string
   platforms: string[] // ['facebook', 'instagram']
   scheduledAt?: string | null
-}
-
-/**
- * MOCK Meta Graph API publisher.
- *
- * In real production this function would:
- *   - For Facebook: POST to
- *     https://graph.facebook.com/v19.0/{page-id}/photos
- *     with params: url, caption, access_token
- *   - For Instagram: 2-step
- *     1) POST /v19.0/{ig-user-id}/media with image_url, caption → returns creation_id
- *     2) POST /v19.0/{ig-user-id}/media_publish with creation_id
- *
- * For now we simulate both calls and store deterministic-looking IDs.
- */
-async function publishToFacebook(imageUrl: string, caption: string): Promise<{ ok: boolean; postId: string; error?: string }> {
-  await new Promise((r) => setTimeout(r, 700))
-  // Mock response shape mirrors the real API
-  return {
-    ok: true,
-    postId: `${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`,
-  }
-}
-
-async function publishToInstagram(imageUrl: string, caption: string): Promise<{ ok: boolean; postId: string; error?: string }> {
-  // Simulate 2-step container-create + publish
-  await new Promise((r) => setTimeout(r, 1000))
-  return {
-    ok: true,
-    postId: `ig_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`,
-  }
 }
 
 export async function POST(req: NextRequest) {
@@ -65,7 +37,7 @@ export async function POST(req: NextRequest) {
     const platformsStr = body.platforms.join(',')
     const scheduledAt = body.scheduledAt ? new Date(body.scheduledAt) : null
 
-    // If user scheduled, just persist as scheduled (no API call yet).
+    // If user scheduled, persist as scheduled (no API call yet).
     if (scheduledAt && scheduledAt.getTime() > Date.now() + 60_000) {
       const post = await db.post.create({
         data: {
@@ -88,20 +60,47 @@ export async function POST(req: NextRequest) {
     // Immediate publish — fan out per platform
     let fbPostId: string | null = null
     let igPostId: string | null = null
+    let fbPostUrl: string | null = null
+    let igPostUrl: string | null = null
     const errors: string[] = []
 
+    // Run publishes in parallel for speed
+    const publishPromises: Promise<void>[] = []
+
     if (body.platforms.includes('facebook')) {
-      const res = await publishToFacebook(body.imageUrl, fullCaption)
-      if (res.ok) fbPostId = res.postId
-      else errors.push(`Facebook: ${res.error}`)
+      publishPromises.push(
+        publishToFacebook(body.imageUrl, fullCaption).then((res) => {
+          if (res.ok && res.postId) {
+            fbPostId = res.postId
+            fbPostUrl = res.postUrl || null
+          } else {
+            errors.push(`Facebook: ${res.error}`)
+          }
+        })
+      )
     }
     if (body.platforms.includes('instagram')) {
-      const res = await publishToInstagram(body.imageUrl, fullCaption)
-      if (res.ok) igPostId = res.postId
-      else errors.push(`Instagram: ${res.error}`)
+      publishPromises.push(
+        publishToInstagram(body.imageUrl, fullCaption).then((res) => {
+          if (res.ok && res.postId) {
+            igPostId = res.postId
+            igPostUrl = res.postUrl || null
+          } else {
+            errors.push(`Instagram: ${res.error}`)
+          }
+        })
+      )
     }
 
-    const status = errors.length === 0 ? 'published' : 'failed'
+    await Promise.all(publishPromises)
+
+    // Determine overall status: published if at least one platform succeeded
+    const anyOk = (fbPostId !== null) || (igPostId !== null)
+    const status = errors.length === 0
+      ? 'published'
+      : anyOk
+        ? 'published' // partial success still counts as published
+        : 'failed'
 
     const post = await db.post.create({
       data: {
@@ -118,11 +117,13 @@ export async function POST(req: NextRequest) {
     })
 
     return NextResponse.json({
-      ok: status === 'published',
+      ok: anyOk,
       mode: 'published',
       postId: post.id,
       fbPostId,
       igPostId,
+      fbPostUrl,
+      igPostUrl,
       errors,
     })
   } catch (err) {

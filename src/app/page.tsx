@@ -191,7 +191,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-2 pt-2 text-xs text-muted-foreground">
             <div className="flex items-center gap-2">
               <Wine className="size-3.5 text-[var(--gold)]" />
-              <span>HKDrinks Studio · v1 demo · publishing is currently mocked.</span>
+              <span>HKDrinks Studio · Live publishing via Meta Graph API.</span>
             </div>
             <span>HK Drinks · Authorised Retailer · © 2026</span>
           </div>
