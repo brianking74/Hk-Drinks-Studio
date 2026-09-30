@@ -6,6 +6,7 @@ import { ImageUploader } from '@/components/social/image-uploader'
 import { CaptionGenerator } from '@/components/social/caption-generator'
 import { PublishPanel } from '@/components/social/publish-panel'
 import { PostHistory } from '@/components/social/post-history'
+import { MetaStatusPanel } from '@/components/social/meta-status-panel'
 
 export default function Home() {
   return (
@@ -72,6 +73,11 @@ export default function Home() {
       {/* Main */}
       <main className="flex-1 mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:py-12">
         <div className="grid gap-6 lg:grid-cols-3">
+          {/* Connection status — shows live FB/IG connection state */}
+          <div className="lg:col-span-1">
+            <MetaStatusPanel />
+          </div>
+
           {/* Step 1 — Image */}
           <div className="lg:col-span-2 space-y-6">
             <Card className="border-[rgba(201,168,76,0.2)] bg-[#1a1a1a] shadow-[0_8px_40px_rgba(0,0,0,0.5)]">
