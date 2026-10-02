@@ -1,6 +1,3 @@
-import { promises as fs } from 'fs'
-import path from 'path'
-
 const META_API_VERSION = 'v19.0'
 const META_API_BASE = `https://graph.facebook.com/${META_API_VERSION}`
 
@@ -31,16 +28,50 @@ function getConfig(): MetaConfig {
 }
 
 /**
- * Resolve a relative image URL to a local file path on disk (for uploads).
- * Returns null if the image is not a local file (e.g. an external https URL).
+ * Try to resolve an image reference to a Buffer + filename + mimeType that we can
+ * pass directly to Meta. Supports:
+ *   - Absolute https URL  → fetch it from origin
+ *   - Local file path (relative to /public, e.g. /uploads/abc.jpg) → read from disk
+ *   - Data URL (data:image/...;base64,...) → decode
+ *
+ * Returns null if the image is already a public URL that Meta can fetch on its own
+ * (we just pass the URL through in that case).
  */
-function resolveLocalImagePath(imageUrl: string): string | null {
-  if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
-    return null // external URL — Meta will fetch it directly
+async function resolveImageForUpload(
+  imageRef: string
+): Promise<{ buffer: Buffer; filename: string; mimeType: string } | { publicUrl: string }> {
+  // Data URL → decode to buffer
+  if (imageRef.startsWith('data:')) {
+    const match = imageRef.match(/^data:(image\/[a-z]+);base64,(.+)$/i)
+    if (!match) throw new Error('Invalid data URL')
+    const mimeType = match[1]
+    const buffer = Buffer.from(match[2], 'base64')
+    const ext = mimeType === 'image/png' ? 'png' : mimeType === 'image/webp' ? 'webp' : mimeType === 'image/gif' ? 'gif' : 'jpg'
+    return { buffer, filename: `upload.${ext}`, mimeType }
   }
-  // Relative path like /uploads/abc.jpg → /home/z/my-project/public/uploads/abc.jpg
+
+  // External URL → let Meta fetch it directly (no need to download on our side)
+  if (imageRef.startsWith('http://') || imageRef.startsWith('https://')) {
+    return { publicUrl: imageRef }
+  }
+
+  // Local file path → read from disk (works on local dev, not on Vercel serverless)
+  // On Vercel, /public is read-only at runtime — but our upload flow now uses data URLs
+  // (uploaded by the user, kept in memory on the server, passed as data URL to publish).
+  // So this branch is mainly for local dev / preview environments.
+  const fs = await import('fs/promises')
+  const path = await import('path')
   const publicDir = path.join(process.cwd(), 'public')
-  return path.join(publicDir, imageUrl)
+  const localPath = path.join(publicDir, imageRef)
+  const buffer = await fs.readFile(localPath)
+  const filename = path.basename(localPath)
+  const ext = path.extname(localPath).toLowerCase()
+  const mimeType =
+    ext === '.png' ? 'image/png'
+    : ext === '.webp' ? 'image/webp'
+    : ext === '.gif' ? 'image/gif'
+    : 'image/jpeg'
+  return { buffer, filename, mimeType }
 }
 
 export interface PublishResult {
@@ -54,94 +85,63 @@ export interface PublishResult {
 /**
  * Publish a photo to a Facebook Page using the Graph API.
  *
- * Uses multipart file upload when the image is a local file (more reliable —
- * Meta doesn't need to fetch the image from a public URL).
- * Falls back to URL-based upload for external https image URLs.
+ * Strategy:
+ *   - If image is a local file or data URL → multipart file upload (no public URL needed)
+ *   - If image is an external https URL → URL-based upload (Meta fetches it directly)
  *
  * Endpoint: POST /{page-id}/photos
  * Docs: https://developers.facebook.com/docs/graph-api/reference/page/photos/
  */
 export async function publishToFacebook(
-  imageUrl: string,
+  imageRef: string,
   caption: string
 ): Promise<PublishResult> {
-  const { pageId, pageAccessToken, appBaseUrl } = getConfig()
+  const { pageId, pageAccessToken } = getConfig()
   const url = `${META_API_BASE}/${pageId}/photos`
 
   try {
-    const localPath = resolveLocalImagePath(imageUrl)
+    const resolved = await resolveImageForUpload(imageRef)
 
-    if (localPath) {
-      // Multipart file upload — read the file and send it directly
-      const fileBuffer = await fs.readFile(localPath)
-      const filename = path.basename(localPath)
-      const ext = path.extname(localPath).toLowerCase()
-      const mimeType =
-        ext === '.png' ? 'image/png'
-        : ext === '.webp' ? 'image/webp'
-        : ext === '.gif' ? 'image/gif'
-        : 'image/jpeg'
+    let res: Response
 
+    if ('buffer' in resolved) {
+      // Multipart file upload
       const formData = new FormData()
       formData.append('access_token', pageAccessToken)
       formData.append('caption', caption)
       formData.append('published', 'true')
-      formData.append('source', new Blob([fileBuffer], { type: mimeType }), filename)
-
-      const res = await fetch(url, {
-        method: 'POST',
-        body: formData,
-      })
-
-      const data = await res.json()
-
-      if (!res.ok || data.error) {
-        return {
-          ok: false,
-          platform: 'facebook',
-          error: data.error?.message || `HTTP ${res.status}`,
-        }
-      }
-
-      const postId = data.post_id || data.id
-      return {
-        ok: true,
-        platform: 'facebook',
-        postId,
-        postUrl: `https://www.facebook.com/${pageId}_posts/${postId}`,
-      }
+      formData.append('source', new Blob([resolved.buffer], { type: resolved.mimeType }), resolved.filename)
+      res = await fetch(url, { method: 'POST', body: formData })
     } else {
-      // External URL — Meta fetches it directly
-      const absoluteImageUrl = imageUrl // already absolute
-
-      const res = await fetch(url, {
+      // URL-based upload
+      res = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          url: absoluteImageUrl,
+          url: resolved.publicUrl,
           caption,
           access_token: pageAccessToken,
           published: true,
         }),
       })
+    }
 
-      const data = await res.json()
+    const data = await res.json()
 
-      if (!res.ok || data.error) {
-        return {
-          ok: false,
-          platform: 'facebook',
-          error: data.error?.message || `HTTP ${res.status}`,
-        }
-      }
-
-      const postId = data.post_id || data.id
+    if (!res.ok || data.error) {
       return {
-        ok: true,
+        ok: false,
         platform: 'facebook',
-        postId,
-        postUrl: `https://www.facebook.com/${pageId}_posts/${postId}`,
+        error: data.error?.message || `HTTP ${res.status}`,
       }
+    }
+
+    const postId = data.post_id || data.id
+    return {
+      ok: true,
+      platform: 'facebook',
+      postId,
+      postUrl: `https://www.facebook.com/${pageId}_posts/${postId}`,
     }
   } catch (err) {
     return {
@@ -158,16 +158,17 @@ export async function publishToFacebook(
  * Step 1: POST /{ig-user-id}/media — creates a media container
  * Step 2: POST /{ig-user-id}/media_publish — publishes the container
  *
- * NOTE: IG requires a publicly-accessible image URL. If the image is a local
- * file, you must host it publicly before passing to this function.
+ * NOTE: IG Content Publishing API REQUIRES a publicly-accessible image URL.
+ * If the image is local or a data URL, we CANNOT publish to IG without first
+ * uploading it to a public host. The app currently returns an error in this case.
  *
  * Docs: https://developers.facebook.com/docs/instagram-api/guides/content-publishing
  */
 export async function publishToInstagram(
-  imageUrl: string,
+  imageRef: string,
   caption: string
 ): Promise<PublishResult> {
-  const { igUserId, pageAccessToken, appBaseUrl } = getConfig()
+  const { igUserId, pageAccessToken } = getConfig()
 
   if (!igUserId) {
     return {
@@ -177,10 +178,14 @@ export async function publishToInstagram(
     }
   }
 
-  // IG requires a public URL — convert relative paths to absolute
-  const absoluteImageUrl = imageUrl.startsWith('http')
-    ? imageUrl
-    : `${appBaseUrl}${imageUrl}`
+  // IG requires a public URL — data URLs and local paths don't work
+  if (!imageRef.startsWith('http://') && !imageRef.startsWith('https://')) {
+    return {
+      ok: false,
+      platform: 'instagram',
+      error: 'Instagram publishing requires a publicly-accessible image URL. Upload the image to a public host (e.g. your CDN, Cloudinary, or hkdrinks.shop) and pass that URL.',
+    }
+  }
 
   try {
     // Step 1: Create the media container
@@ -189,7 +194,7 @@ export async function publishToInstagram(
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        image_url: absoluteImageUrl,
+        image_url: imageRef,
         caption,
         access_token: pageAccessToken,
       }),
@@ -302,13 +307,4 @@ export async function verifyPageToken(): Promise<{ valid: boolean; scopes?: stri
   } catch (err) {
     return { valid: false, error: err instanceof Error ? err.message : 'Network error' }
   }
-}
-
-/**
- * Save an uploaded image (already on disk) and return its public URL.
- * Used by the publish flow to ensure Meta can fetch the image.
- */
-export async function getPublicImageUrl(relativePath: string): Promise<string> {
-  const { appBaseUrl } = getConfig()
-  return `${appBaseUrl}${relativePath}`
 }

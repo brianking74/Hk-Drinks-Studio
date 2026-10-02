@@ -145,7 +145,7 @@ export function PostHistory() {
                   className="flex gap-3 rounded-md border border-[rgba(201,168,76,0.15)] p-3 hover:border-[rgba(201,168,76,0.35)] hover:bg-[rgba(201,168,76,0.03)] transition-all"
                 >
                   <img
-                    src={p.imageUrl}
+                    src={p.imageUrl && p.imageUrl.startsWith('(') ? '/hkdrinks-logo.png' : p.imageUrl}
                     alt=""
                     className="size-16 shrink-0 rounded-sm object-cover bg-black border border-[rgba(201,168,76,0.2)]"
                   />

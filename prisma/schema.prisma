@@ -6,7 +6,10 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  // PostgreSQL — works on Vercel + Supabase/Neon/Railway/etc.
+  // For local dev you can still use SQLite if you prefer, but the
+  // production deploy must use PostgreSQL.
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 

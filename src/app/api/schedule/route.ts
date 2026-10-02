@@ -36,6 +36,18 @@ export async function POST(req: NextRequest) {
       )
     }
 
+    // Scheduled posts can't use data URLs (too large for DB storage + no way
+    // to re-fetch at publish time). User must provide a public URL.
+    if (body.imageUrl.startsWith('data:')) {
+      return NextResponse.json(
+        {
+          error:
+            'Scheduled posts require a public image URL (https://...). Data URLs from uploads are only supported for immediate publishing. Either publish now, or upload the image to a public host (e.g. hkdrinks.shop) and use that URL.',
+        },
+        { status: 400 }
+      )
+    }
+
     const post = await db.post.create({
       data: {
         imageUrl: body.imageUrl,

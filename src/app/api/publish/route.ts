@@ -39,6 +39,17 @@ export async function POST(req: NextRequest) {
 
     // If user scheduled, persist as scheduled (no API call yet).
     if (scheduledAt && scheduledAt.getTime() > Date.now() + 60_000) {
+      // Scheduled posts can't use data URLs (too large for DB storage).
+      // User must provide a public URL for scheduled posts.
+      if (body.imageUrl.startsWith('data:')) {
+        return NextResponse.json(
+          {
+            error:
+              'Scheduled posts require a public image URL (https://...). Data URLs from uploads are only supported for immediate publishing. Either publish now, or upload the image to a public host (e.g. hkdrinks.shop) and use that URL.',
+          },
+          { status: 400 }
+        )
+      }
       const post = await db.post.create({
         data: {
           imageUrl: body.imageUrl,
@@ -102,9 +113,15 @@ export async function POST(req: NextRequest) {
         ? 'published' // partial success still counts as published
         : 'failed'
 
+    // For the DB record, we don't want to store huge data URLs.
+    // Use a placeholder if it's a data URL.
+    const dbImageUrl = body.imageUrl.startsWith('data:')
+      ? '(uploaded image — not stored)'
+      : body.imageUrl
+
     const post = await db.post.create({
       data: {
-        imageUrl: body.imageUrl,
+        imageUrl: dbImageUrl,
         caption: body.caption,
         hashtags: body.hashtags || null,
         platforms: platformsStr,

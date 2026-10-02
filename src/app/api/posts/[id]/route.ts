@@ -20,6 +20,18 @@ export async function POST(
     const platforms = post.platforms.split(',')
     const fullCaption = post.caption + (post.hashtags ? `\n\n${post.hashtags}` : '')
 
+    // If the post's imageUrl is a placeholder (e.g. from a data-URL upload),
+    // we can't retry — the original image is gone.
+    if (post.imageUrl === '(uploaded image — not stored)' || post.imageUrl.startsWith('data:')) {
+      return NextResponse.json(
+        {
+          error:
+            'Cannot retry — original image was uploaded as a data URL and is not stored. Please publish a new post with the image re-uploaded.',
+        },
+        { status: 400 }
+      )
+    }
+
     let fbPostId = post.fbPostId
     let igPostId = post.igPostId
     const errors: string[] = []

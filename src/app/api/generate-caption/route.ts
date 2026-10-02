@@ -66,30 +66,41 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    // Resolve to absolute file path on disk
-    const publicPath = path.join(process.cwd(), 'public')
-    const absPath = path.join(publicPath, body.imageUrl)
-
     let base64: string
-    let mimeType: string
-    try {
-      const buf = await fs.readFile(absPath)
-      const ext = path.extname(absPath).toLowerCase()
-      mimeType =
-        ext === '.png'
-          ? 'image/png'
-          : ext === '.webp'
-            ? 'image/webp'
-            : ext === '.gif'
-              ? 'image/gif'
-              : 'image/jpeg'
-      base64 = `data:${mimeType};base64,${buf.toString('base64')}`
-    } catch (err) {
-      console.error('[generate-caption] could not read image', err)
-      return NextResponse.json(
-        { error: 'Image not found on server. Please re-upload.' },
-        { status: 404 }
-      )
+
+    // Case 1: imageUrl is already a data URL — use as-is
+    if (body.imageUrl.startsWith('data:')) {
+      base64 = body.imageUrl
+    }
+    // Case 2: imageUrl is an absolute https URL — pass through (VLM will fetch)
+    else if (body.imageUrl.startsWith('http://') || body.imageUrl.startsWith('https://')) {
+      base64 = body.imageUrl
+    }
+    // Case 3: imageUrl is a local file path (e.g. /uploads/abc.jpg) — read from disk
+    // This only works in local dev where /public is writable. On Vercel, the upload
+    // route returns data URLs instead, so this branch isn't hit in production.
+    else {
+      const publicPath = path.join(process.cwd(), 'public')
+      const absPath = path.join(publicPath, body.imageUrl)
+      try {
+        const buf = await fs.readFile(absPath)
+        const ext = path.extname(absPath).toLowerCase()
+        const mimeType =
+          ext === '.png'
+            ? 'image/png'
+            : ext === '.webp'
+              ? 'image/webp'
+              : ext === '.gif'
+                ? 'image/gif'
+                : 'image/jpeg'
+        base64 = `data:${mimeType};base64,${buf.toString('base64')}`
+      } catch (err) {
+        console.error('[generate-caption] could not read image', err)
+        return NextResponse.json(
+          { error: 'Image not found on server. Please re-upload.' },
+          { status: 404 }
+        )
+      }
     }
 
     const zai = await ZAI.create()

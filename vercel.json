@@ -1,0 +1,22 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "buildCommand": "prisma generate && next build",
+  "installCommand": "bun install",
+  "devCommand": "next dev",
+  "regions": ["hkg1"],
+  "functions": {
+    "src/app/api/generate-caption/route.ts": {
+      "maxDuration": 60
+    },
+    "src/app/api/publish/route.ts": {
+      "maxDuration": 60
+    },
+    "src/app/api/posts/[id]/route.ts": {
+      "maxDuration": 60
+    },
+    "src/app/api/meta/status/route.ts": {
+      "maxDuration": 30
+    }
+  }
+}

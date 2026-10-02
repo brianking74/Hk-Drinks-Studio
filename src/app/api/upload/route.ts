@@ -1,14 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { writeFile, mkdir } from 'fs/promises'
-import { existsSync } from 'fs'
-import path from 'path'
-import { randomUUID } from 'crypto'
 
 export const runtime = 'nodejs'
 
-const UPLOAD_DIR = path.join(process.cwd(), 'public', 'uploads')
 const MAX_SIZE = 12 * 1024 * 1024 // 12 MB
 
+/**
+ * Image upload route — serverless-friendly.
+ *
+ * Instead of saving to /public/uploads (which is read-only on Vercel),
+ * we return the image as a data URL. The client keeps it in memory
+ * and passes it directly to /api/publish, which forwards it to Meta
+ * via multipart upload.
+ *
+ * Trade-off: data URLs are ~33% larger than binary, but for 12MB max
+ * this is fine. For production scale, you'd want to use a real object
+ * store (S3, Cloudinary, UploadThing, etc.) — see DEPLOYMENT.md.
+ */
 export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData()
@@ -32,26 +39,17 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    if (!existsSync(UPLOAD_DIR)) {
-      await mkdir(UPLOAD_DIR, { recursive: true })
-    }
-
-    const ext = path.extname(file.name) || '.jpg'
-    const safeExt = ['jpg', 'jpeg', 'png', 'webp', 'gif'].includes(
-      ext.replace('.', '').toLowerCase()
-    )
-      ? ext.toLowerCase()
-      : '.jpg'
-
-    const filename = `${randomUUID()}${safeExt}`
     const buffer = Buffer.from(await file.arrayBuffer())
-    await writeFile(path.join(UPLOAD_DIR, filename), buffer)
+    const base64 = buffer.toString('base64')
+    const dataUrl = `data:${file.type};base64,${base64}`
 
     return NextResponse.json({
-      url: `/uploads/${filename}`,
-      filename,
+      url: dataUrl,
+      filename: file.name,
       size: file.size,
       type: file.type,
+      // Note: this is a data URL, not a server path. The client uses it as the
+      // image src for preview, and the publish API accepts it as `imageRef`.
     })
   } catch (err) {
     console.error('[upload] error', err)
