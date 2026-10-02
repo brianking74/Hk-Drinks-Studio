@@ -129,22 +129,27 @@ export function PublishPanel() {
         <div className="grid grid-cols-2 gap-3">
           {PLATFORMS.map((p) => {
             const active = draft.platforms.includes(p.id)
+            const isIgUnavailable = p.id === 'instagram'
             return (
               <button
                 key={p.id}
                 type="button"
                 onClick={() => togglePlatform(p.id)}
+                title={isIgUnavailable && !active ? 'Currently unavailable — IG account issue. Toggle on to attempt anyway.' : undefined}
                 className={cn(
-                  'flex items-center gap-3 rounded-md p-3 text-left transition-all border',
+                  'flex items-center gap-3 rounded-md p-3 text-left transition-all border relative',
                   active
                     ? 'border-[var(--gold)] bg-[rgba(201,168,76,0.08)]'
-                    : 'border-[rgba(201,168,76,0.2)] hover:border-[rgba(201,168,76,0.4)] hover:bg-[rgba(201,168,76,0.03)]'
+                    : isIgUnavailable
+                      ? 'border-[rgba(179,38,30,0.3)] bg-[rgba(179,38,30,0.03)] hover:bg-[rgba(179,38,30,0.06)]'
+                      : 'border-[rgba(201,168,76,0.2)] hover:border-[rgba(201,168,76,0.4)] hover:bg-[rgba(201,168,76,0.03)]'
                 )}
               >
                 <span
                   className={cn(
                     'flex size-9 items-center justify-center rounded-md text-white',
-                    p.color
+                    p.color,
+                    isIgUnavailable && !active && 'opacity-50'
                   )}
                 >
                   {p.icon}
@@ -152,7 +157,11 @@ export function PublishPanel() {
                 <span className="flex-1 min-w-0">
                   <span className="block text-sm font-medium text-[var(--off-white)]">{p.label}</span>
                   <span className="block text-[0.65rem] uppercase tracking-wider text-muted-foreground">
-                    {active ? 'Will post' : 'Off'}
+                    {active
+                      ? 'Will post'
+                      : isIgUnavailable
+                        ? 'Unavailable'
+                        : 'Off'}
                   </span>
                 </span>
                 <Switch checked={active} />
@@ -223,7 +232,7 @@ export function PublishPanel() {
       </Button>
 
       <p className="text-xs text-muted-foreground text-center leading-relaxed">
-        Posts publish live to your Meta accounts via the Graph API. See your post history below for direct links.
+        Posts publish live to Facebook via the Meta Graph API. Instagram is currently unavailable — toggle it on to attempt, or just post to FB.
       </p>
     </div>
   )

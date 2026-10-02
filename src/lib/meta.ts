@@ -30,6 +30,19 @@ function getConfig(): MetaConfig {
   return { appId, appSecret, pageId, igUserId: igUserId || '', pageAccessToken, appBaseUrl }
 }
 
+/**
+ * Resolve a relative image URL to a local file path on disk (for uploads).
+ * Returns null if the image is not a local file (e.g. an external https URL).
+ */
+function resolveLocalImagePath(imageUrl: string): string | null {
+  if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
+    return null // external URL — Meta will fetch it directly
+  }
+  // Relative path like /uploads/abc.jpg → /home/z/my-project/public/uploads/abc.jpg
+  const publicDir = path.join(process.cwd(), 'public')
+  return path.join(publicDir, imageUrl)
+}
+
 export interface PublishResult {
   ok: boolean
   platform: 'facebook' | 'instagram'
@@ -41,6 +54,10 @@ export interface PublishResult {
 /**
  * Publish a photo to a Facebook Page using the Graph API.
  *
+ * Uses multipart file upload when the image is a local file (more reliable —
+ * Meta doesn't need to fetch the image from a public URL).
+ * Falls back to URL-based upload for external https image URLs.
+ *
  * Endpoint: POST /{page-id}/photos
  * Docs: https://developers.facebook.com/docs/graph-api/reference/page/photos/
  */
@@ -49,42 +66,82 @@ export async function publishToFacebook(
   caption: string
 ): Promise<PublishResult> {
   const { pageId, pageAccessToken, appBaseUrl } = getConfig()
-
-  // Resolve relative URL to absolute public URL
-  const absoluteImageUrl = imageUrl.startsWith('http')
-    ? imageUrl
-    : `${appBaseUrl}${imageUrl}`
-
   const url = `${META_API_BASE}/${pageId}/photos`
 
   try {
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        url: absoluteImageUrl,
-        caption,
-        access_token: pageAccessToken,
-        published: true,
-      }),
-    })
+    const localPath = resolveLocalImagePath(imageUrl)
 
-    const data = await res.json()
+    if (localPath) {
+      // Multipart file upload — read the file and send it directly
+      const fileBuffer = await fs.readFile(localPath)
+      const filename = path.basename(localPath)
+      const ext = path.extname(localPath).toLowerCase()
+      const mimeType =
+        ext === '.png' ? 'image/png'
+        : ext === '.webp' ? 'image/webp'
+        : ext === '.gif' ? 'image/gif'
+        : 'image/jpeg'
 
-    if (!res.ok || data.error) {
-      return {
-        ok: false,
-        platform: 'facebook',
-        error: data.error?.message || `HTTP ${res.status}`,
+      const formData = new FormData()
+      formData.append('access_token', pageAccessToken)
+      formData.append('caption', caption)
+      formData.append('published', 'true')
+      formData.append('source', new Blob([fileBuffer], { type: mimeType }), filename)
+
+      const res = await fetch(url, {
+        method: 'POST',
+        body: formData,
+      })
+
+      const data = await res.json()
+
+      if (!res.ok || data.error) {
+        return {
+          ok: false,
+          platform: 'facebook',
+          error: data.error?.message || `HTTP ${res.status}`,
+        }
       }
-    }
 
-    const postId = data.post_id || data.id
-    return {
-      ok: true,
-      platform: 'facebook',
-      postId,
-      postUrl: `https://www.facebook.com/${pageId}_posts/${postId}`,
+      const postId = data.post_id || data.id
+      return {
+        ok: true,
+        platform: 'facebook',
+        postId,
+        postUrl: `https://www.facebook.com/${pageId}_posts/${postId}`,
+      }
+    } else {
+      // External URL — Meta fetches it directly
+      const absoluteImageUrl = imageUrl // already absolute
+
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          url: absoluteImageUrl,
+          caption,
+          access_token: pageAccessToken,
+          published: true,
+        }),
+      })
+
+      const data = await res.json()
+
+      if (!res.ok || data.error) {
+        return {
+          ok: false,
+          platform: 'facebook',
+          error: data.error?.message || `HTTP ${res.status}`,
+        }
+      }
+
+      const postId = data.post_id || data.id
+      return {
+        ok: true,
+        platform: 'facebook',
+        postId,
+        postUrl: `https://www.facebook.com/${pageId}_posts/${postId}`,
+      }
     }
   } catch (err) {
     return {
@@ -100,6 +157,9 @@ export async function publishToFacebook(
  *
  * Step 1: POST /{ig-user-id}/media — creates a media container
  * Step 2: POST /{ig-user-id}/media_publish — publishes the container
+ *
+ * NOTE: IG requires a publicly-accessible image URL. If the image is a local
+ * file, you must host it publicly before passing to this function.
  *
  * Docs: https://developers.facebook.com/docs/instagram-api/guides/content-publishing
  */
@@ -117,6 +177,7 @@ export async function publishToInstagram(
     }
   }
 
+  // IG requires a public URL — convert relative paths to absolute
   const absoluteImageUrl = imageUrl.startsWith('http')
     ? imageUrl
     : `${appBaseUrl}${imageUrl}`

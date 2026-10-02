@@ -37,7 +37,10 @@ const emptyDraft: DraftPost = {
   filename: null,
   caption: '',
   hashtags: '',
-  platforms: ['facebook', 'instagram'],
+  // Default to FB only — IG is currently unavailable for this account.
+  // Users can still toggle IG on manually if they want to attempt a publish
+  // (e.g. after they switch to a fresh IG Business account in the future).
+  platforms: ['facebook'],
   brandVoice: '',
   extraContext: '',
 }
