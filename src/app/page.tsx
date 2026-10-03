@@ -72,86 +72,84 @@ export default function Home() {
 
       {/* Main */}
       <main className="flex-1 mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:py-12">
+        {/* Connection status — narrow horizontal bar on top */}
+        <div className="mb-6">
+          <MetaStatusPanel />
+        </div>
+
+        {/* Step cards below */}
         <div className="grid gap-6 lg:grid-cols-3">
-          {/* Connection status — shows live FB/IG connection state */}
-          <div className="lg:col-span-1">
-            <MetaStatusPanel />
-          </div>
-
           {/* Step 1 — Image */}
-          <div className="lg:col-span-2 space-y-6">
-            <Card className="border-[rgba(201,168,76,0.2)] bg-[#1a1a1a] shadow-[0_8px_40px_rgba(0,0,0,0.5)]">
-              <CardHeader>
-                <div className="flex items-center gap-3">
-                  <StepBadge n={1} />
-                  <div>
-                    <p className="eyebrow mb-1">Step One</p>
-                    <CardTitle
-                      className="text-white"
-                      style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 400, fontSize: '1.6rem', lineHeight: 1.2 }}
-                    >
-                      Upload bottle or serve photo
-                    </CardTitle>
-                  </div>
+          <Card className="border-[rgba(201,168,76,0.2)] bg-[#1a1a1a] shadow-[0_8px_40px_rgba(0,0,0,0.5)]">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <StepBadge n={1} />
+                <div>
+                  <p className="eyebrow mb-1">Step One</p>
+                  <CardTitle
+                    className="text-white"
+                    style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 400, fontSize: '1.6rem', lineHeight: 1.2 }}
+                  >
+                    Upload bottle or serve photo
+                  </CardTitle>
                 </div>
-                <CardDescription className="text-[var(--cream)] mt-2">
-                  A clear photo of the bottle, a pour, a cocktail, or the bar scene works best.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ImageUploader />
-              </CardContent>
-            </Card>
+              </div>
+              <CardDescription className="text-[var(--cream)] mt-2">
+                A clear photo of the bottle, a pour, a cocktail, or the bar scene works best.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ImageUploader />
+            </CardContent>
+          </Card>
 
-            <Card className="border-[rgba(201,168,76,0.2)] bg-[#1a1a1a] shadow-[0_8px_40px_rgba(0,0,0,0.5)]">
-              <CardHeader>
-                <div className="flex items-center gap-3">
-                  <StepBadge n={2} />
-                  <div>
-                    <p className="eyebrow mb-1">Step Two</p>
-                    <CardTitle
-                      className="text-white"
-                      style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 400, fontSize: '1.6rem', lineHeight: 1.2 }}
-                    >
-                      Generate editorial caption
-                    </CardTitle>
-                  </div>
+          {/* Step 2 — Caption */}
+          <Card className="border-[rgba(201,168,76,0.2)] bg-[#1a1a1a] shadow-[0_8px_40px_rgba(0,0,0,0.5)]">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <StepBadge n={2} />
+                <div>
+                  <p className="eyebrow mb-1">Step Two</p>
+                  <CardTitle
+                    className="text-white"
+                    style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 400, fontSize: '1.6rem', lineHeight: 1.2 }}
+                  >
+                    Generate editorial caption
+                  </CardTitle>
                 </div>
-                <CardDescription className="text-[var(--cream)] mt-2">
-                  Our vision-AI reads the image and writes an HK Drinks-flavoured caption.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <CaptionGenerator />
-              </CardContent>
-            </Card>
-          </div>
+              </div>
+              <CardDescription className="text-[var(--cream)] mt-2">
+                Our vision-AI reads the image and writes an HK Drinks-flavoured caption.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <CaptionGenerator />
+            </CardContent>
+          </Card>
 
           {/* Step 3 — Publish */}
-          <div className="space-y-6">
-            <Card className="border-[rgba(201,168,76,0.2)] bg-[#1a1a1a] shadow-[0_8px_40px_rgba(0,0,0,0.5)] lg:sticky lg:top-24">
-              <CardHeader>
-                <div className="flex items-center gap-3">
-                  <StepBadge n={3} />
-                  <div>
-                    <p className="eyebrow mb-1">Step Three</p>
-                    <CardTitle
-                      className="text-white"
-                      style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 400, fontSize: '1.6rem', lineHeight: 1.2 }}
-                    >
-                      Publish or schedule
-                    </CardTitle>
-                  </div>
+          <Card className="border-[rgba(201,168,76,0.2)] bg-[#1a1a1a] shadow-[0_8px_40px_rgba(0,0,0,0.5)] lg:sticky lg:top-24">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <StepBadge n={3} />
+                <div>
+                  <p className="eyebrow mb-1">Step Three</p>
+                  <CardTitle
+                    className="text-white"
+                    style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 400, fontSize: '1.6rem', lineHeight: 1.2 }}
+                  >
+                    Publish or schedule
+                  </CardTitle>
                 </div>
-                <CardDescription className="text-[var(--cream)] mt-2">
-                  Choose platforms and either post now or pick a future time.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <PublishPanel />
-              </CardContent>
-            </Card>
-          </div>
+              </div>
+              <CardDescription className="text-[var(--cream)] mt-2">
+                Choose platforms and either post now or pick a future time.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <PublishPanel />
+            </CardContent>
+          </Card>
         </div>
 
         {/* History */}
