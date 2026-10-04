@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import path from 'path'
 import fs from 'fs/promises'
-import ZAI from 'z-ai-web-dev-sdk'
+import OpenAI from 'openai'
 
 export const runtime = 'nodejs'
 // Long-running VLM call
@@ -55,6 +55,17 @@ HASHTAGS:
 
 Do not add preamble, do not add commentary, do not add pricing, do not invent product names that aren't visible in the image.`
 
+function getNvidiaClient() {
+  const apiKey = process.env.NVIDIA_API_KEY
+  if (!apiKey) {
+    throw new Error('NVIDIA_API_KEY is not configured. Add it in Vercel → Settings → Environment Variables.')
+  }
+  return new OpenAI({
+    apiKey,
+    baseURL: 'https://integrate.api.nvidia.com/v1',
+  })
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = (await req.json()) as GenerateBody
@@ -66,15 +77,15 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    let base64: string
+    let imageContent: { type: 'image_url'; image_url: { url: string } }
 
     // Case 1: imageUrl is already a data URL — use as-is
     if (body.imageUrl.startsWith('data:')) {
-      base64 = body.imageUrl
+      imageContent = { type: 'image_url', image_url: { url: body.imageUrl } }
     }
-    // Case 2: imageUrl is an absolute https URL — pass through (VLM will fetch)
+    // Case 2: imageUrl is an absolute https URL — pass through (model fetches it)
     else if (body.imageUrl.startsWith('http://') || body.imageUrl.startsWith('https://')) {
-      base64 = body.imageUrl
+      imageContent = { type: 'image_url', image_url: { url: body.imageUrl } }
     }
     // Case 3: imageUrl is a local file path (e.g. /uploads/abc.jpg) — read from disk
     // This only works in local dev where /public is writable. On Vercel, the upload
@@ -93,7 +104,8 @@ export async function POST(req: NextRequest) {
               : ext === '.gif'
                 ? 'image/gif'
                 : 'image/jpeg'
-        base64 = `data:${mimeType};base64,${buf.toString('base64')}`
+        const dataUrl = `data:${mimeType};base64,${buf.toString('base64')}`
+        imageContent = { type: 'image_url', image_url: { url: dataUrl } }
       } catch (err) {
         console.error('[generate-caption] could not read image', err)
         return NextResponse.json(
@@ -103,7 +115,7 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    const zai = await ZAI.create()
+    const client = getNvidiaClient()
 
     const userText = [
       'Please write a caption for the attached image.',
@@ -115,18 +127,22 @@ export async function POST(req: NextRequest) {
       .filter(Boolean)
       .join('\n')
 
-    const completion = await zai.chat.completions.createVision({
-      model: 'glm-4.5v',
+    const completion = await client.chat.completions.create({
+      model: 'meta/llama-3.2-90b-vision-instruct',
       messages: [
         { role: 'system', content: HKDRINKS_SYSTEM_PROMPT },
         {
           role: 'user',
           content: [
             { type: 'text', text: userText },
-            { type: 'image_url', image_url: { url: base64 } },
+            imageContent,
           ],
         },
       ],
+      // Small cap on tokens — captions are short, this prevents runaway generations
+      max_tokens: 600,
+      // Low temperature for more reliable adherence to the structured format
+      temperature: 0.6,
     })
 
     const raw = completion?.choices?.[0]?.message?.content ?? ''
@@ -153,12 +169,13 @@ export async function POST(req: NextRequest) {
     })
   } catch (err) {
     console.error('[generate-caption] error', err)
-    return NextResponse.json(
-      {
-        error:
-          'Caption generation failed. The image may be too large or the model is busy — please try again.',
-      },
-      { status: 500 }
-    )
+
+    // Provide a more useful error message for the missing-key case
+    const message =
+      err instanceof Error && err.message.includes('NVIDIA_API_KEY')
+        ? err.message
+        : 'Caption generation failed. The image may be too large or the model is busy — please try again.'
+
+    return NextResponse.json({ error: message }, { status: 500 })
   }
 }
