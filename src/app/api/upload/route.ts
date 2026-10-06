@@ -11,10 +11,6 @@ const MAX_SIZE = 12 * 1024 * 1024 // 12 MB
  * we return the image as a data URL. The client keeps it in memory
  * and passes it directly to /api/publish, which forwards it to Meta
  * via multipart upload.
- *
- * Trade-off: data URLs are ~33% larger than binary, but for 12MB max
- * this is fine. For production scale, you'd want to use a real object
- * store (S3, Cloudinary, UploadThing, etc.) — see DEPLOYMENT.md.
  */
 export async function POST(req: NextRequest) {
   try {

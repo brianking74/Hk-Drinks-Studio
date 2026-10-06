@@ -1,6 +1,6 @@
 'use client'
 
-import { Calendar, Clock, Facebook, Instagram, Loader2, Send } from 'lucide-react'
+import { Calendar, Clock, Facebook, Instagram, Loader2, Send, Link2 } from 'lucide-react'
 import { useState } from 'react'
 import { usePostStore, type PlatformId } from '@/store/post-store'
 import { Button } from '@/components/ui/button'
@@ -9,6 +9,7 @@ import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/switch'
 import { useToast } from '@/hooks/use-toast'
 import { cn } from '@/lib/utils'
+import { buildFooter, normalizeProductLink } from '@/lib/footer'
 
 const PLATFORMS: { id: PlatformId; label: string; icon: React.ReactNode; color: string }[] = [
   {
@@ -26,7 +27,7 @@ const PLATFORMS: { id: PlatformId; label: string; icon: React.ReactNode; color: 
 ]
 
 export function PublishPanel() {
-  const { draft, isPublishing, setPublishing, reset, togglePlatform } =
+  const { draft, isPublishing, setPublishing, reset, togglePlatform, setProductLink } =
     usePostStore()
   const { toast } = useToast()
   const [scheduleMode, setScheduleMode] = useState(false)
@@ -37,6 +38,11 @@ export function PublishPanel() {
     draft.caption.trim().length > 0 &&
     draft.platforms.length > 0 &&
     !isPublishing
+
+  // Preview of the footer that will be appended to the caption at publish time.
+  // Recomputed whenever the product link changes.
+  const footerPreview = buildFooter(draft.productLink)
+  const normalizedLink = normalizeProductLink(draft.productLink)
 
   const onPublish = async () => {
     if (!canPublish) {
@@ -64,6 +70,7 @@ export function PublishPanel() {
             caption: draft.caption,
             hashtags: draft.hashtags,
             platforms: draft.platforms,
+            productLink: draft.productLink,
             scheduledAt: new Date(scheduledAt).toISOString(),
           }
         : {
@@ -71,6 +78,7 @@ export function PublishPanel() {
             caption: draft.caption,
             hashtags: draft.hashtags,
             platforms: draft.platforms,
+            productLink: draft.productLink,
           }
       const res = await fetch(endpoint, {
         method: 'POST',
@@ -202,6 +210,34 @@ export function PublishPanel() {
           </p>
         </div>
       )}
+
+      {/* Product link — injected into the footer of every published post */}
+      <div className="grid gap-2">
+        <Label htmlFor="product-link" className="eyebrow text-[0.65rem] flex items-center gap-1.5">
+          <Link2 className="size-3" />
+          Product link (optional)
+        </Label>
+        <Input
+          id="product-link"
+          placeholder="e.g. /products/cincoro-reposado"
+          value={draft.productLink}
+          onChange={(e) => setProductLink(e.target.value)}
+          className="border-[rgba(201,168,76,0.25)] bg-black/40 text-[var(--off-white)] placeholder:text-muted-foreground/70 focus-visible:border-[var(--gold)] focus-visible:ring-[var(--gold)]/30"
+        />
+        {draft.productLink.trim() && (
+          <p className="text-[0.65rem] text-muted-foreground/80 font-mono">
+            → hkdrinks.shop{(normalizedLink.startsWith('hkdrinks.shop') ? normalizedLink.slice('hkdrinks.shop'.length) : '') || normalizedLink}
+          </p>
+        )}
+      </div>
+
+      {/* Footer preview — shown so user knows what gets appended */}
+      <details className="rounded-md border border-[rgba(201,168,76,0.15)] bg-black/20 px-3 py-2 group">
+        <summary className="cursor-pointer text-[0.65rem] uppercase tracking-[0.15em] text-muted-foreground hover:text-[var(--gold)] transition-colors select-none">
+          Footer preview (auto-added to every post)
+        </summary>
+        <pre className="mt-2 text-[0.7rem] leading-relaxed text-[var(--cream)]/80 whitespace-pre-wrap font-sans">{footerPreview.trim()}</pre>
+      </details>
 
       <Button
         type="button"

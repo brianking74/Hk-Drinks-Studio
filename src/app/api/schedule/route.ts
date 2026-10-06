@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
+import { appendFooter } from '@/lib/footer'
 
 export const runtime = 'nodejs'
 
@@ -8,6 +9,7 @@ interface ScheduleBody {
   caption: string
   hashtags?: string
   platforms: string[]
+  productLink?: string
   scheduledAt: string // ISO
 }
 
@@ -48,10 +50,16 @@ export async function POST(req: NextRequest) {
       )
     }
 
+    // Bake the footer into the stored caption so the scheduled post
+    // publishes with the same CTA block as immediate publishes.
+    const captionWithHashtags =
+      body.caption + (body.hashtags ? `\n\n${body.hashtags}` : '')
+    const fullCaption = appendFooter(captionWithHashtags, body.productLink || '')
+
     const post = await db.post.create({
       data: {
         imageUrl: body.imageUrl,
-        caption: body.caption,
+        caption: fullCaption,
         hashtags: body.hashtags || null,
         platforms: body.platforms.join(','),
         status: 'scheduled',

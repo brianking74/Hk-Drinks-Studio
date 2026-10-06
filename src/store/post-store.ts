@@ -12,6 +12,7 @@ export interface DraftPost {
   platforms: PlatformId[]
   brandVoice: string
   extraContext: string
+  productLink: string
 }
 
 interface PostStore {
@@ -26,6 +27,7 @@ interface PostStore {
   togglePlatform: (p: PlatformId) => void
   setBrandVoice: (v: string) => void
   setExtraContext: (v: string) => void
+  setProductLink: (v: string) => void
   reset: () => void
   setUploading: (b: boolean) => void
   setGenerating: (b: boolean) => void
@@ -43,6 +45,7 @@ const emptyDraft: DraftPost = {
   platforms: ['facebook'],
   brandVoice: '',
   extraContext: '',
+  productLink: '',
 }
 
 export const usePostStore = create<PostStore>((set) => ({
@@ -75,6 +78,8 @@ export const usePostStore = create<PostStore>((set) => ({
   setBrandVoice: (brandVoice) => set((s) => ({ draft: { ...s.draft, brandVoice } })),
   setExtraContext: (extraContext) =>
     set((s) => ({ draft: { ...s.draft, extraContext } })),
+  setProductLink: (productLink) =>
+    set((s) => ({ draft: { ...s.draft, productLink } })),
   reset: () => set({ draft: emptyDraft, imageUrl: null }),
   setUploading: (isUploading) => set({ isUploading }),
   setGenerating: (isGenerating) => set({ isGenerating }),

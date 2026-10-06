@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
 import { publishToFacebook, publishToInstagram } from '@/lib/meta'
+import { appendFooter } from '@/lib/footer'
 
 export const runtime = 'nodejs'
 // Real Meta Graph API calls can take a few seconds each
@@ -11,6 +12,7 @@ interface PublishBody {
   caption: string
   hashtags?: string
   platforms: string[] // ['facebook', 'instagram']
+  productLink?: string
   scheduledAt?: string | null
 }
 
@@ -31,8 +33,11 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    const fullCaption =
+    // Build the full caption: caption + hashtags + standard HK Drinks footer
+    // (footer always appended — it's the delivery/WhatsApp/shop CTA block)
+    const captionWithHashtags =
       body.caption + (body.hashtags ? `\n\n${body.hashtags}` : '')
+    const fullCaption = appendFooter(captionWithHashtags, body.productLink || '')
 
     const platformsStr = body.platforms.join(',')
     const scheduledAt = body.scheduledAt ? new Date(body.scheduledAt) : null
