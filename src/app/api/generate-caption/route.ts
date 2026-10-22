@@ -127,12 +127,14 @@ export async function POST(req: NextRequest) {
       .filter(Boolean)
       .join('\n')
 
-    const completion = await client.chat.completions.create({
-      // Llama 3.2 11B Vision — fits Vercel Hobby's 10s function timeout.
-      // The 90B model produces higher-quality editorial writing but takes
-      // 30-40s per request, which exceeds Vercel Hobby's serverless limit.
+    // Use streaming to keep the connection alive — Vercel Hobby kills
+    // idle functions after 10s, but streaming responses stay "active"
+    // and bypass the timeout. The client reads the stream and assembles
+    // the final caption.
+    const stream = await client.chat.completions.create({
+      // Llama 3.2 11B Vision — faster than 90B, fits Vercel Hobby timeout.
       // If we upgrade to Vercel Pro (60s timeout), switch back to
-      // 'meta/llama-3.2-90b-vision-instruct' for better captions.
+      // 'meta/llama-3.2-90b-vision-instruct' for better editorial quality.
       model: 'meta/llama-3.2-11b-vision-instruct',
       messages: [
         { role: 'system', content: HKDRINKS_SYSTEM_PROMPT },
@@ -144,39 +146,40 @@ export async function POST(req: NextRequest) {
           ],
         },
       ],
-      // Small cap on tokens — captions are short, this prevents runaway generations
       max_tokens: 500,
-      // Slightly higher temperature for variety (11B model needs more nudging
-      // than 90B to produce non-generic phrasing)
       temperature: 0.7,
+      stream: true,
     })
 
-    const raw = completion?.choices?.[0]?.message?.content ?? ''
+    // Convert the OpenAI stream into a ReadableStream of text chunks
+    // that the browser can read incrementally.
+    const encoder = new TextEncoder()
+    const readableStream = new ReadableStream({
+      async start(controller) {
+        try {
+          for await (const chunk of stream) {
+            const delta = chunk.choices?.[0]?.delta?.content
+            if (delta) {
+              controller.enqueue(encoder.encode(delta))
+            }
+          }
+          controller.close()
+        } catch (err) {
+          controller.error(err)
+        }
+      },
+    })
 
-    // Parse out caption + hashtags from the structured reply
-    let caption = raw
-    let hashtags = ''
-
-    const captionMatch = raw.match(
-      /CAPTION:\s*([\s\S]*?)(?:\n\s*HASHTAGS:|$)/i
-    )
-    const hashtagMatch = raw.match(/HASHTAGS:\s*([\s\S]*?)$/i)
-
-    if (captionMatch) caption = captionMatch[1].trim()
-    if (hashtagMatch) hashtags = hashtagMatch[1].trim()
-
-    // Fallbacks if model didn't follow format
-    if (!caption) caption = raw.trim()
-
-    return NextResponse.json({
-      caption,
-      hashtags,
-      raw,
+    return new Response(readableStream, {
+      headers: {
+        'Content-Type': 'text/plain; charset=utf-8',
+        'Cache-Control': 'no-cache',
+        'X-Accel-Buffering': 'no',
+      },
     })
   } catch (err) {
     console.error('[generate-caption] error', err)
 
-    // Provide a more useful error message for the missing-key case
     const message =
       err instanceof Error && err.message.includes('NVIDIA_API_KEY')
         ? err.message

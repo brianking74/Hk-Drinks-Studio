@@ -28,6 +28,9 @@ export function CaptionGenerator() {
       return
     }
     setGenerating(true)
+    // Clear existing caption so the user sees the stream fresh
+    setCaption('')
+    setHashtags('')
     try {
       const res = await fetch('/api/generate-caption', {
         method: 'POST',
@@ -38,10 +41,42 @@ export function CaptionGenerator() {
           extraContext: draft.extraContext,
         }),
       })
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'Generation failed')
-      setCaption(data.caption || '')
-      setHashtags(data.hashtags || '')
+
+      if (!res.ok) {
+        // Try to parse error as JSON (non-streaming error response)
+        let errorMsg = 'Generation failed'
+        try {
+          const data = await res.json()
+          errorMsg = data.error || errorMsg
+        } catch {
+          errorMsg = `Server error (${res.status})`
+        }
+        throw new Error(errorMsg)
+      }
+
+      // Read the streaming response — tokens arrive incrementally
+      const reader = res.body?.getReader()
+      if (!reader) throw new Error('Could not read response stream')
+
+      const decoder = new TextDecoder()
+      let raw = ''
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+        const chunk = decoder.decode(value, { stream: true })
+        raw += chunk
+        // Live-update the caption field as tokens arrive
+        // Parse what we have so far so the user sees structured output
+        const partial = parseCaptionAndHashtags(raw)
+        setCaption(partial.caption)
+        if (partial.hashtags) setHashtags(partial.hashtags)
+      }
+
+      // Final parse of the complete response
+      const final = parseCaptionAndHashtags(raw)
+      setCaption(final.caption)
+      setHashtags(final.hashtags)
+
       toast({
         title: 'Caption ready',
         description: 'Edit below or publish as-is.',
@@ -134,4 +169,44 @@ export function CaptionGenerator() {
       </div>
     </div>
   )
+}
+
+/**
+ * Parse the raw streaming text into structured caption + hashtags.
+ * Handles the expected format:
+ *   CAPTION:
+ *   <caption text>
+ *
+ *   HASHTAGS:
+ *   #hashtag1 #hashtag2 ...
+ *
+ * Also handles partial streams (when called mid-generation) and
+ * bare text without the CAPTION:/HASHTAGS: markers.
+ */
+function parseCaptionAndHashtags(raw: string): { caption: string; hashtags: string } {
+  let caption = raw
+  let hashtags = ''
+
+  // Strip leading whitespace/preamble before CAPTION:
+  const captionStart = raw.search(/CAPTION:\s*/i)
+  if (captionStart >= 0) {
+    const afterCaptionStart = raw.slice(captionStart + 'CAPTION:'.length)
+    // Find HASHTAGS: marker (if present yet)
+    const hashtagStart = afterCaptionStart.search(/HASHTAGS:\s*/i)
+
+    if (hashtagStart >= 0) {
+      caption = afterCaptionStart.slice(0, hashtagStart).trim()
+      hashtags = afterCaptionStart
+        .slice(hashtagStart + 'HASHTAGS:'.length)
+        .trim()
+    } else {
+      // HASHTAGS: marker not yet streamed — everything after CAPTION: is caption
+      caption = afterCaptionStart.trim()
+    }
+  } else {
+    // No CAPTION: marker yet — show raw text as-is
+    caption = raw.trim()
+  }
+
+  return { caption, hashtags }
 }
