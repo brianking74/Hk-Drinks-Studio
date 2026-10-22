@@ -33,11 +33,16 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    // Build the full caption: caption + hashtags + standard HK Drinks footer
-    // (footer always appended — it's the delivery/WhatsApp/shop CTA block)
+    // Build platform-specific captions:
+    // - Facebook: caption + footer (no hashtags — they look cluttered on FB)
+    // - Instagram: caption + hashtags + footer (hashtags work well on IG)
+    // The footer (delivery/WhatsApp/shop CTA) is always appended to both.
+    const captionOnly = body.caption
     const captionWithHashtags =
       body.caption + (body.hashtags ? `\n\n${body.hashtags}` : '')
-    const fullCaption = appendFooter(captionWithHashtags, body.productLink || '')
+
+    const fbCaption = appendFooter(captionOnly, body.productLink || '')
+    const igCaption = appendFooter(captionWithHashtags, body.productLink || '')
 
     const platformsStr = body.platforms.join(',')
     const scheduledAt = body.scheduledAt ? new Date(body.scheduledAt) : null
@@ -55,10 +60,14 @@ export async function POST(req: NextRequest) {
           { status: 400 }
         )
       }
+      // For scheduled posts, store the IG-style caption (with hashtags) since
+      // we don't yet know which platform the scheduler will publish to. The
+      // scheduler can strip hashtags when publishing to FB at runtime.
+      const scheduledFullCaption = appendFooter(captionWithHashtags, body.productLink || '')
       const post = await db.post.create({
         data: {
           imageUrl: body.imageUrl,
-          caption: body.caption,
+          caption: scheduledFullCaption,
           hashtags: body.hashtags || null,
           platforms: platformsStr,
           status: 'scheduled',
@@ -73,7 +82,7 @@ export async function POST(req: NextRequest) {
       })
     }
 
-    // Immediate publish — fan out per platform
+    // Immediate publish — fan out per platform with platform-specific captions
     let fbPostId: string | null = null
     let igPostId: string | null = null
     let fbPostUrl: string | null = null
@@ -85,7 +94,7 @@ export async function POST(req: NextRequest) {
 
     if (body.platforms.includes('facebook')) {
       publishPromises.push(
-        publishToFacebook(body.imageUrl, fullCaption).then((res) => {
+        publishToFacebook(body.imageUrl, fbCaption).then((res) => {
           if (res.ok && res.postId) {
             fbPostId = res.postId
             fbPostUrl = res.postUrl || null
@@ -97,7 +106,7 @@ export async function POST(req: NextRequest) {
     }
     if (body.platforms.includes('instagram')) {
       publishPromises.push(
-        publishToInstagram(body.imageUrl, fullCaption).then((res) => {
+        publishToInstagram(body.imageUrl, igCaption).then((res) => {
           if (res.ok && res.postId) {
             igPostId = res.postId
             igPostUrl = res.postUrl || null

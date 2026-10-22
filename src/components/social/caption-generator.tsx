@@ -157,7 +157,9 @@ export function CaptionGenerator() {
       </div>
 
       <div className="grid gap-2">
-        <Label htmlFor="hashtags" className="eyebrow text-[0.65rem]">Hashtags</Label>
+        <div className="flex items-center justify-between">
+          <Label htmlFor="hashtags" className="eyebrow text-[0.65rem]">Hashtags <span className="text-[var(--gold)]/70 normal-case tracking-normal font-normal">(Instagram only — hidden on Facebook)</span></Label>
+        </div>
         <Textarea
           id="hashtags"
           placeholder="#HKDrinks #PremiumSpirits ..."
