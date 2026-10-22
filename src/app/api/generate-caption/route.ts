@@ -128,7 +128,12 @@ export async function POST(req: NextRequest) {
       .join('\n')
 
     const completion = await client.chat.completions.create({
-      model: 'meta/llama-3.2-90b-vision-instruct',
+      // Llama 3.2 11B Vision — fits Vercel Hobby's 10s function timeout.
+      // The 90B model produces higher-quality editorial writing but takes
+      // 30-40s per request, which exceeds Vercel Hobby's serverless limit.
+      // If we upgrade to Vercel Pro (60s timeout), switch back to
+      // 'meta/llama-3.2-90b-vision-instruct' for better captions.
+      model: 'meta/llama-3.2-11b-vision-instruct',
       messages: [
         { role: 'system', content: HKDRINKS_SYSTEM_PROMPT },
         {
@@ -140,9 +145,10 @@ export async function POST(req: NextRequest) {
         },
       ],
       // Small cap on tokens — captions are short, this prevents runaway generations
-      max_tokens: 600,
-      // Low temperature for more reliable adherence to the structured format
-      temperature: 0.6,
+      max_tokens: 500,
+      // Slightly higher temperature for variety (11B model needs more nudging
+      // than 90B to produce non-generic phrasing)
+      temperature: 0.7,
     })
 
     const raw = completion?.choices?.[0]?.message?.content ?? ''
